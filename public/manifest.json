@@ -1,0 +1,11 @@
+{
+  "name": "Adam Finkelston",
+  "short_name": "Artwork By Adam Finkelston",
+  "theme_color": "#ffffff",
+  "background_color": "#EF4444",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/",
+  "splash_pages": null
+}
