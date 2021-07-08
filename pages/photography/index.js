@@ -1,16 +1,15 @@
-import { getPrints } from "../../lib/api";
+import { getPhotographs } from "../../lib/api";
 import ImageCard from "../../components/ImageCard";
 import Layout from "@/components/Layout";
 
 export default function galleries({ art }) {
-  console.log(art);
   return (
     <Layout>
       <main className="grid grid-cols-2 xl:grid-cols-3 my-20 xl:mx-40 mx-10 justify-center gap-10">
         {art.map((a) => (
           <ImageCard
             key={a._id}
-            href={`/prints/${a.slug.current}`}
+            href={`/photography/${a.slug.current}`}
             title={a.title}
             image={a.featureImage.asset}
           />
@@ -21,7 +20,7 @@ export default function galleries({ art }) {
 }
 
 export async function getStaticProps({ preview = false }) {
-  const art = await getPrints(preview);
+  const art = await getPhotographs(preview);
 
   return {
     props: { preview, art },

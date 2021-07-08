@@ -2,11 +2,9 @@ import { getAllArtworkWithSlug, getGallery, getAllArt } from "lib/api";
 import Layout from "@/components/Layout";
 import LightboxModal from "@/components/LightboxModal";
 
-export default function Prints({ gallery, art }) {
-  const photographs = art.filter((art) => art.category === "photographs");
-  const prints = art.filter((art) => art.category === "prints");
+export default function Prints({ gallery }) {
   return (
-    <Layout photographs={photographs} prints={prints}>
+    <Layout>
       <LightboxModal gallery={gallery} />
     </Layout>
   );

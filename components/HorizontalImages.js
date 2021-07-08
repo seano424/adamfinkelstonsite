@@ -1,7 +1,7 @@
-import Link from 'next/link'
-import Image from 'next/image'
-import { imageBuilder } from '@/lib/sanity'
-import { useEffect, useState } from 'react'
+import Link from "next/link";
+import Image from "next/image";
+import { imageBuilder } from "@/lib/sanity";
+import { useEffect, useState } from "react";
 
 export default function HorizontalImages({
   images,
@@ -12,10 +12,10 @@ export default function HorizontalImages({
   setDelta,
   wheelStop,
 }) {
-  const [state, setState] = useState(false)
+  const [state, setState] = useState(false);
   useEffect(() => {
-    isGoingDown ? setState(true) : setState(false)
-  }, [wheelStop])
+    isGoingDown ? setState(true) : setState(false);
+  }, [wheelStop]);
 
   return (
     <main
@@ -39,7 +39,7 @@ export default function HorizontalImages({
                 </div>
                 <div
                   className={`${
-                    state ? 'h-600 w-600' : 'h-400 w-400'
+                    state ? "h-600 w-600" : "h-400 w-400"
                   } transition-all relative delay-700 duration-1000 ease-in-out`}
                 >
                   {image !== undefined && (
@@ -58,7 +58,7 @@ export default function HorizontalImages({
               {image !== undefined && (
                 <img
                   className={`${
-                    state ? 'h-600' : 'h-400'
+                    state ? "h-600" : "h-400"
                   } transition-all delay-700 duration-1000 ease-in-out`}
                   src={imageBuilder(image.asset).url()}
                   alt="Adam Finkelston"
@@ -72,5 +72,5 @@ export default function HorizontalImages({
         </div>
       ))}
     </main>
-  )
+  );
 }
