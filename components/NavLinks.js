@@ -1,13 +1,18 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { FaShoppingCart } from "react-icons/fa";
+import { FaShoppingCart, FaFacebook, FaInstagram } from "react-icons/fa";
 import {
   FacebookShareButton,
   TwitterShareButton,
   PinterestShareButton,
 } from "react-share";
-import { FacebookIcon, TwitterIcon, PinterestIcon } from "react-share";
+import {
+  FacebookIcon,
+  TwitterIcon,
+  PinterestIcon,
+  InstapaperIcon,
+} from "react-share";
 import { useCartContext } from "@/context/Store";
 import BackButton from "./BackButton";
 
@@ -28,7 +33,7 @@ export default function NavLinks() {
   const url = `https://fink.vercel.app${router.asPath}`;
 
   return (
-    <article className="hidden xl:flex gap-12 items-center text-gray-500">
+    <article className="hidden w-8/12 justify-between xl:flex py-5 items-center text-gray-500">
       <BackButton />
       <Link href="/">
         <a
@@ -37,15 +42,6 @@ export default function NavLinks() {
           }`}
         >
           Home
-        </a>
-      </Link>
-      <Link href="/products">
-        <a
-          className={`uppercase pl-4 my-4 transition-all duration-100 ease-linear hover:text-gray-900 hover:scale-110 transform hover:underline ${
-            pathname === "/shop" && "text-design-1 underline"
-          }`}
-        >
-          Shop
         </a>
       </Link>
       <Link href="/newsletter">
