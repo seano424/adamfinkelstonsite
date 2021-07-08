@@ -13,11 +13,6 @@ export default {
       type: "string",
     },
     {
-      name: "color",
-      title: "Header Color",
-      type: "colorPicker",
-    },
-    {
       title: "Image Gallery",
       name: "artPieces",
       description:
