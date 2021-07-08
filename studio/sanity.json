@@ -1,7 +1,7 @@
 {
   "root": true,
   "api": {
-    "projectId": "placeholder",
+    "projectId": "i1r9l4fj",
     "dataset": "placeholder"
   },
   "project": {
@@ -18,9 +18,7 @@
   ],
   "env": {
     "development": {
-      "plugins": [
-        "@sanity/vision"
-      ]
+      "plugins": ["@sanity/vision"]
     }
   },
   "parts": [
