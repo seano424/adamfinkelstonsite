@@ -2,7 +2,7 @@
   "root": true,
   "api": {
     "projectId": "i1r9l4fj",
-    "dataset": "placeholder"
+    "dataset": "production"
   },
   "project": {
     "name": "Next.JS E-commerce example",
@@ -20,19 +20,13 @@
   ],
   "env": {
     "development": {
-      "plugins": [
-        "@sanity/vision"
-      ]
+      "plugins": ["@sanity/vision"]
     }
   },
   "parts": [
     {
       "name": "part:@sanity/base/schema",
       "path": "./schemas/schema"
-    },
-    {
-      "implements": "part:@sanity/desk-tool/structure",
-      "path": "./src/deskStructure"
     }
   ]
 }
