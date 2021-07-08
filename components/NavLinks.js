@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useCartContext } from "@/context/Store";
-import { FaShoppingCart } from "react-icons/fa";
-import Tab from "./Tab";
 import { useRouter } from "next/router";
+import { FaShoppingCart } from "react-icons/fa";
 import {
   FacebookShareButton,
   TwitterShareButton,
   PinterestShareButton,
 } from "react-share";
 import { FacebookIcon, TwitterIcon, PinterestIcon } from "react-share";
+import { useCartContext } from "@/context/Store";
+import BackButton from "./BackButton";
 
-export default function NavLinks({ prints, photographs }) {
+export default function NavLinks() {
   const cart = useCartContext()[0];
   const [cartItems, setCartItems] = useState(0);
 
@@ -22,12 +22,14 @@ export default function NavLinks({ prints, photographs }) {
     });
     setCartItems(numItems);
   }, [cart]);
+
   const { pathname } = useRouter();
   const router = useRouter();
   const url = `https://fink.vercel.app${router.asPath}`;
 
   return (
-    <article className="hidden xl:flex gap-12 text-gray-500">
+    <article className="hidden xl:flex gap-12 items-center text-gray-500">
+      <BackButton />
       <Link href="/">
         <a
           className={`uppercase pl-4 my-4 transition-all duration-100 ease-linear hover:text-gray-900 hover:scale-110 transform hover:underline ${
@@ -37,8 +39,6 @@ export default function NavLinks({ prints, photographs }) {
           Home
         </a>
       </Link>
-      {/* <Tab links={prints} />
-      <Tab links={photographs} /> */}
       <Link href="/products">
         <a
           className={`uppercase pl-4 my-4 transition-all duration-100 ease-linear hover:text-gray-900 hover:scale-110 transform hover:underline ${
