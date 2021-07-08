@@ -1,31 +1,43 @@
-import Error from "next/error";
-import { useRouter } from "next/router";
-import { getClient, usePreviewSubscription } from "../../utils/sanity";
-import ProductsPage from "../../components/ProductsPage";
+import StoreHeading from '@/components/StoreHeading'
+import ProductListings from '@/components/ProductListings'
+import {
+  getAllProductsInCollection,
+  getAllSubscriptionsInCollection,
+  getAllCollections,
+} from '@/lib/shopify'
+import { getAllArt } from '../../lib/api'
+import Layout from '@/components/Layout'
 
-const query = `//groq
-  *[_type == "product" && defined(slug.current)]
-`;
-
-function ProductsPageContainer({ productsData, preview }) {
-  const router = useRouter();
-  if (!router.isFallback && !productsData) {
-    return <Error statusCode={404} />;
-  }
-  const { data: products } = usePreviewSubscription(query, {
-    initialData: productsData,
-    enabled: preview || router.query.preview !== null,
-  });
-
-  return <ProductsPage products={products} />;
+function IndexPage({ products, art, subscriptions, collections }) {
+  console.log('collections', collections)
+  console.log('subscriptions', subscriptions)
+  const photographs = art.filter((art) => art.category === 'photographs')
+  const prints = art.filter((art) => art.category === 'prints')
+  return (
+    <Layout photographs={photographs} prints={prints}>
+      <div className="mx-auto max-w-6xl">
+        <StoreHeading />
+        <ProductListings products={products} />
+        {/* <StoreHeading /> */}
+        {/* <ProductListings products={subscriptions} /> */}
+      </div>
+    </Layout>
+  )
 }
 
-export async function getStaticProps({ params = {}, preview = false }) {
-  const productsData = await getClient(preview).fetch(query);
-
+export async function getStaticProps({ preview }) {
+  const products = await getAllProductsInCollection()
+  const subscriptions = await getAllSubscriptionsInCollection()
+  const collections = await getAllCollections()
+  const art = await getAllArt(preview)
   return {
-    props: { preview, productsData },
-  };
+    props: {
+      products,
+      art,
+      subscriptions,
+      collections,
+    },
+  }
 }
 
-export default ProductsPageContainer;
+export default IndexPage

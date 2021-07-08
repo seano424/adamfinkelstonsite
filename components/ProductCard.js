@@ -1,43 +1,43 @@
-import Link from "next/link";
-import { urlFor } from "../utils/sanity";
+import Image from 'next/image'
+import Link from 'next/link'
+import Price from '@/components/Price'
 
-function ProductCard({ _id, title, mainImage, slug, defaultProductVariant }) {
+function ProductCard({ product }) {
+  const handle = product.node.handle
+  const title = product.node.title
+  const description = product.node.description
+  const price = product.node.variants.edges[0].node.price
+
+  const imageNode = product.node.images.edges[0].node
+
   return (
-    <Link href={`/products/${slug.current}`}>
-      <a className="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
-        <div
-          className="flex items-end justify-end h-56 w-full bg-cover"
-          style={{
-            backgroundImage: `url('${urlFor(mainImage)
-              .auto("format")
-              .fit("crop")
-              .width(750)
-              .quality(80)}`,
-          }}
-        >
-          <button className="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
-            <svg
-              className="h-5 w-5"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-            </svg>
-          </button>
+    <Link href={`/products/${handle}`} passHref>
+      <a className="h-120 w-72 filter contrast-125 rounded shadow-lg hover:shadow-xl mx-auto border-palette-lighter">
+        <div className="h-72 border-b-2 border-palette-lighter relative">
+          <Image
+            src={imageNode.originalSrc}
+            alt={imageNode.altText}
+            layout="fill"
+            className="transform duration-500 ease-in-out hover:scale-110"
+          />
         </div>
-        <div className="px-5 py-3">
-          <h3 className="text-gray-700 uppercase">{title}</h3>
-          <span className="text-gray-500 mt-2">
-            ${defaultProductVariant?.price}
-          </span>
+        <div className="h-24 relative">
+          <div className="font-primary truncate text-gray-900 text-lg pt-1 px-4 font-semibold">
+            {title}
+          </div>
+          {/* <div className="text-lg text-gray-600 p-4 font-primary font-light">
+            {description}
+          </div> */}
+          <div
+            className="text-palette-dark font-primary font-medium text-base absolute bottom-0 right-0 mb-4 pl-8 pr-4 pb-1 pt-2 bg-palette-lighter 
+            rounded-tl-sm triangle"
+          >
+            <Price currency="$" num={price} numSize="text-lg" />
+          </div>
         </div>
       </a>
     </Link>
-  );
+  )
 }
 
-export default ProductCard;
+export default ProductCard

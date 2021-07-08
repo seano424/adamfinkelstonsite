@@ -5,7 +5,7 @@
     "dataset": "production"
   },
   "project": {
-    "name": "Next.JS E-commerce example",
+    "name": "Adam's Studio",
     "basePath": "/studio"
   },
   "plugins": [
