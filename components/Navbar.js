@@ -6,6 +6,7 @@ import MobileNavbar from "./MobileNavbar";
 
 export default function Navbar({ prints, photographs }) {
   const [open, setOpen] = useState(false);
+
   const toggle = () => {
     setOpen(!open);
   };
