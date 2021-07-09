@@ -4,20 +4,22 @@ import { useRouter } from "next/router";
 import { FaShoppingCart, FaInstagramSquare } from "react-icons/fa";
 import { TwitterShareButton, PinterestShareButton } from "react-share";
 import { FacebookIcon, TwitterIcon, PinterestIcon } from "react-share";
-import { useCartContext } from "@/context/Store";
+// import { useCartContext } from "@/context/Store";
+import { useShoppingCart } from "use-shopping-cart";
 import BackButton from "./BackButton";
 
 export default function NavLinks() {
-  const cart = useCartContext()[0];
-  const [cartItems, setCartItems] = useState(0);
+  const { totalPrice, redirectToCheckout, cartCount } = useShoppingCart();
+  // const cart = useCartContext()[0];
+  // const [cartItems, setCartItems] = useState(0);
 
-  useEffect(() => {
-    let numItems = 0;
-    cart.forEach((item) => {
-      numItems += item.variantQuantity;
-    });
-    setCartItems(numItems);
-  }, [cart]);
+  // useEffect(() => {
+  //   let numItems = 0;
+  //   cart.forEach((item) => {
+  //     numItems += item.variantQuantity;
+  //   });
+  //   setCartItems(numItems);
+  // }, [cart]);
 
   const { pathname } = useRouter();
   const router = useRouter();
@@ -71,7 +73,7 @@ export default function NavLinks() {
           <FacebookIcon round={true} size={30} />
         </a>
         <a href="https://www.instagram.com/adinfinitum138/" target="_blank">
-          <FaInstagramSquare round={true} size={30} color={"tomato"} />
+          <FaInstagramSquare size={30} color={"tomato"} />
         </a>
 
         <TwitterShareButton
@@ -90,9 +92,9 @@ export default function NavLinks() {
         <Link href="/cart" passHref>
           <a className="relative self-center" aria-label="cart">
             <FaShoppingCart className="w-6 h-5 m-auto" />
-            {cartItems === 0 ? null : (
+            {cartCount === 0 ? null : (
               <div className="absolute top-0 right-0 text-xs bg-yellow-300 text-gray-900 font-semibold rounded-full py-1 px-2 transform translate-x-10 -translate-y-3">
-                {cartItems}
+                {cartCount}
               </div>
             )}
           </a>

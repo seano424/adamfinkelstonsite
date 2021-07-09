@@ -1,26 +1,20 @@
-import React from 'react'
-import { getAllArt, getContactPage } from '../../lib/api'
-import Layout from '@/components/Layout'
-import Info from '@/components/Info'
+import React from "react";
+import { getContactPage } from "../../lib/api";
+import Info from "@/components/Info";
 
-export default function About({ art, info, landingPage }) {
-  const blockContent = info[0].body
-  const photographs = art.filter((art) => art.category === 'photographs')
-  const prints = art.filter((art) => art.category === 'prints')
+export default function About({ info }) {
+  const blockContent = info[0].body;
   return (
-    <Layout photographs={photographs} prints={prints}>
-      <main className="mt-20">
-        <Info title={'About the Artist'} blockContent={blockContent} />
-      </main>
-    </Layout>
-  )
+    <main className="mt-20">
+      <Info title={"About the Artist"} blockContent={blockContent} />
+    </main>
+  );
 }
 
 export async function getStaticProps({ preview = false }) {
-  const art = await getAllArt(preview)
-  const info = await getContactPage(preview)
+  const info = await getContactPage(preview);
   return {
-    props: { preview, art, info },
+    props: { preview, info },
     revalidate: 1,
-  }
+  };
 }

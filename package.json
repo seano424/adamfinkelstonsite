@@ -17,6 +17,7 @@
   "dependencies": {
     "@sanity/client": "^2.0.1",
     "@sanity/image-url": "^0.140.19",
+    "@stripe/stripe-js": "^1.16.0",
     "formik": "^2.2.9",
     "lodash": "^4.17.21",
     "next": "^10.0.1",
@@ -29,6 +30,9 @@
     "react-scroll-wheel-handler": "^2.0.1",
     "react-share": "^4.4.0",
     "shopify-buy": "^2.11.0",
+    "stripe": "^8.160.0",
+    "swr": "^0.5.6",
+    "use-shopping-cart": "^2.4.3",
     "yup": "^0.32.9"
   },
   "devDependencies": {

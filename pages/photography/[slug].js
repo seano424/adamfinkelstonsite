@@ -1,20 +1,15 @@
-import { getAllArtworkWithSlug, getGallery, getAllArt } from "lib/api";
-import Layout from "@/components/Layout";
-import LightboxModal from "@/components/LightboxModal";
+import { getAllArtworkWithSlug, getGallery } from "lib/api";
+import ImageCards from "@/components/ImageCards";
 
 export default function Prints({ gallery }) {
-  return (
-    <Layout>
-      <LightboxModal gallery={gallery} />
-    </Layout>
-  );
+  const { artPieces, title } = gallery.results[0];
+  return <ImageCards title={title} images={artPieces} />;
 }
 
 export async function getStaticProps({ params, preview = false }) {
   const gallery = await getGallery(params.slug, preview);
-  const art = await getAllArt(preview);
   return {
-    props: { preview, gallery, art },
+    props: { preview, gallery },
     revalidate: 1,
   };
 }

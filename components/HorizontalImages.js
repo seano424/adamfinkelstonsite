@@ -1,31 +1,14 @@
-import Link from "next/link";
-import Image from "next/image";
 import { imageBuilder } from "@/lib/sanity";
-import { useEffect, useState } from "react";
+import { useShoppingCart, formatCurrencyString } from "use-shopping-cart";
 
-export default function HorizontalImages({
-  images,
-  handleLightbox,
-  isGoingDown,
-  setDelta,
-  wheelStop,
-}) {
-  const [state, setState] = useState(false);
-  useEffect(() => {
-    isGoingDown ? setState(true) : setState(false);
-  }, [wheelStop]);
-
+export default function HorizontalImages({ images, state }) {
+  console.log(images);
+  const { addItem, removeItem } = useShoppingCart();
   return (
-    <main
-      // Uncomment this if you want down scroll to also scroll right...
-      onWheel={(e) =>
-        setDelta((e.currentTarget.scrollLeft += e.deltaY + e.deltaX))
-      }
-      className="flex-1 overflow-y-hidden flex gap-x-10 md:h-screen pt-28 lg:pt-0"
-    >
+    <>
       {images.map((image, idx) => (
         <div key={idx} className="min-w-max">
-          <div onClick={() => handleLightbox(idx)} className="cursor-pointer">
+          <div className="cursor-pointer">
             {image !== undefined && image.asset && (
               <img
                 className={`${
@@ -41,6 +24,6 @@ export default function HorizontalImages({
           </div>
         </div>
       ))}
-    </main>
+    </>
   );
 }
