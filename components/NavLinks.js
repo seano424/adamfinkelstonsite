@@ -1,18 +1,9 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { FaShoppingCart, FaFacebook, FaInstagram } from "react-icons/fa";
-import {
-  FacebookShareButton,
-  TwitterShareButton,
-  PinterestShareButton,
-} from "react-share";
-import {
-  FacebookIcon,
-  TwitterIcon,
-  PinterestIcon,
-  InstapaperIcon,
-} from "react-share";
+import { FaShoppingCart, FaInstagramSquare } from "react-icons/fa";
+import { TwitterShareButton, PinterestShareButton } from "react-share";
+import { FacebookIcon, TwitterIcon, PinterestIcon } from "react-share";
 import { useCartContext } from "@/context/Store";
 import BackButton from "./BackButton";
 
@@ -73,12 +64,15 @@ export default function NavLinks() {
         </a>
       </Link>
       <div className="self-center flex gap-2">
-        <FacebookShareButton
-          url={url}
-          title={"Artwork by Adam Finkelston"}
-          image={url}
-          children={<FacebookIcon round={true} size={30} />}
-        />
+        <a
+          href="https://www.facebook.com/AdamFinkelstonPhotography"
+          target="_blank"
+        >
+          <FacebookIcon round={true} size={30} />
+        </a>
+        <a href="https://www.instagram.com/adinfinitum138/" target="_blank">
+          <FaInstagramSquare round={true} size={30} color={"tomato"} />
+        </a>
 
         <TwitterShareButton
           url={url}
