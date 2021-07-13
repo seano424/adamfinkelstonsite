@@ -13,7 +13,10 @@ import aboutPage from "./aboutPage";
 import contactPage from "./contactPage";
 import art from "./art";
 import artPiece from "./artPiece";
+import artwork from "./artwork";
+import artworkImages from "./artworkImages";
 import backgroundImages from "./backgroundImages";
+import merch from "./merch";
 
 import localeString from "./locale/String";
 import localeText from "./locale/Text";
@@ -30,12 +33,15 @@ export default createSchema({
     // in the studio.
     art,
     artPiece,
+    artwork,
+    artworkImages,
     backgroundImages,
     aboutPage,
     contactPage,
     product,
     vendor,
     category,
+    merch,
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
     blockContent,

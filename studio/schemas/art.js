@@ -14,12 +14,12 @@ export default {
         "Here you are able to add artwork for a gallery. The gallery can receive a title, a description, a feature image, and as many pieces as you'd like. Each piece can recieve a title/caption. Everything automatically saves even if you hit the X button or leave the page. Everything can be edited, changed, or deleted as you see fit. Changes will be reflected almost immediately give or take 5 minutes. Images can be dragged and dropped to save time.",
       type: 'string',
     },
-    {
-      title: 'Gallery Description',
-      name: 'description',
-      description: 'This is an optional field to describe the gallery.',
-      type: 'blockContent',
-    },
+    // {
+    //   title: 'Gallery Description',
+    //   name: 'description',
+    //   description: 'This is an optional field to describe the gallery.',
+    //   type: 'blockContent',
+    // },
     {
       name: 'slug',
       title: 'Slug',

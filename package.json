@@ -33,6 +33,7 @@
     "stripe": "^8.160.0",
     "swr": "^0.5.6",
     "use-shopping-cart": "^2.4.3",
+    "uuid": "^3.4.0",
     "yup": "^0.32.9"
   },
   "devDependencies": {

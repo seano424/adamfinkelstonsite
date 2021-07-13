@@ -18,7 +18,7 @@ export default function VerticalScroll({ images, title }) {
         {images.map((a) => (
           <div key={a._key}>
             <Image
-              src={imageBuilder(a.asset).url()}
+              src={imageBuilder(a.image ? a.image.asset : a.asset).url()}
               alt={`${a.title} - Adam Finkelston`}
               width={500}
               height={500}

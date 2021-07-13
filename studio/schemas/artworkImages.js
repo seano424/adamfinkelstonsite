@@ -2,15 +2,20 @@ import MediaAssetSource from "part:sanity-plugin-media/asset-source";
 import { v4 as uuidv4 } from "uuid";
 
 export default {
-  name: "artPiece",
-  title: "Art Piece",
-  type: "image",
-  id: uuidv4(),
-  options: {
-    hotspot: true,
-    sources: [MediaAssetSource],
-  },
+  name: "artworkImages",
+  title: "Artwork Images",
+  type: "document",
   fields: [
+    {
+      name: "image",
+      title: "Image",
+      type: "image",
+      id: uuidv4(),
+      options: {
+        hotspot: true,
+        sources: [MediaAssetSource],
+      },
+    },
     {
       name: "title",
       title: "Title",

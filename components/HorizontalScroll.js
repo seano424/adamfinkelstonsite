@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import HorizontalImages from "./HorizontalImages";
 
-export default function HorizontalScroll({ images }) {
+export default function HorizontalScroll({
+  titles,
+  images,
+  content,
+  handleLightbox,
+}) {
   const [lastScrollTop, setLastScrolltop] = useState(0);
   const [wheelStop, setWheelStop] = useState(false);
   const [isGoingDown, setIsGoingDown] = useState(false);
   const [delta, setDelta] = useState(0);
   const [dimensions, setDimensions] = useState(0);
-  const [state, setState] = useState(false);
-
-  useEffect(() => {
-    isGoingDown ? setState(true) : setState(false);
-  }, [wheelStop]);
 
   useEffect(() => {
     if (window.innerWidth > 832) {
@@ -88,13 +88,15 @@ export default function HorizontalScroll({ images }) {
   };
 
   return (
-    <main
-      onWheel={(e) =>
-        setDelta((e.currentTarget.scrollLeft += e.deltaY + e.deltaX))
-      }
-      className="hidden md:flex mt-6 flex-1 overflow-y-hidden gap-x-10 md:h-screen pt-28 lg:pt-0"
-    >
-      <HorizontalImages images={images} state={state} />
-    </main>
+    <HorizontalImages
+      wheelStop={wheelStop}
+      images={images}
+      setDelta={setDelta}
+      titles={titles}
+      content={content}
+      handleLightbox={handleLightbox}
+      handleScrollDownResizeImage={handleScrollDownResizeImage}
+      isGoingDown={isGoingDown}
+    />
   );
 }

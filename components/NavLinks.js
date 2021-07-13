@@ -10,6 +10,7 @@ import BackButton from "./BackButton";
 
 export default function NavLinks() {
   const { totalPrice, redirectToCheckout, cartCount } = useShoppingCart();
+  const shoppingCart = useShoppingCart();
   // const cart = useCartContext()[0];
   // const [cartItems, setCartItems] = useState(0);
 
@@ -20,6 +21,10 @@ export default function NavLinks() {
   //   });
   //   setCartItems(numItems);
   // }, [cart]);
+
+  const handleClick = (e) => {
+    console.log(shoppingCart);
+  };
 
   const { pathname } = useRouter();
   const router = useRouter();
@@ -90,10 +95,22 @@ export default function NavLinks() {
           children={<PinterestIcon round={true} size={30} />}
         />
         <Link href="/cart" passHref>
-          <a className="relative self-center" aria-label="cart">
-            <FaShoppingCart className="w-6 h-5 m-auto" />
+          <a
+            suppressHydrationWarning={true}
+            className="relative self-center"
+            aria-label="cart"
+            passhref="true"
+          >
+            <FaShoppingCart
+              onClick={handleClick}
+              className="w-6 h-5 m-auto"
+              passhref="true"
+            />
             {cartCount === 0 ? null : (
-              <div className="absolute top-0 right-0 text-xs bg-yellow-300 text-gray-900 font-semibold rounded-full py-1 px-2 transform translate-x-10 -translate-y-3">
+              <div
+                aria-label="cart"
+                className="absolute top-0 right-0 text-xs bg-yellow-300 text-gray-900 font-semibold rounded-full py-1 px-2 transform translate-x-10 -translate-y-3"
+              >
                 {cartCount}
               </div>
             )}

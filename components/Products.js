@@ -1,12 +1,12 @@
 import { useShoppingCart, formatCurrencyString } from "use-shopping-cart";
-import urlFor from "../lib/sanity/urlFor";
+import { urlFor, imageBuilder } from "../lib/sanity";
 const Products = ({ products }) => {
   const { addItem, removeItem } = useShoppingCart();
   return (
     <section>
       {products.map((product) => (
         <div key={product.id}>
-          <img src={urlFor(product.image).width(200)} alt={product.name} />
+          <img src={imageBuilder(product.image).url()} alt={product.name} />
           <h2>{product.name}</h2>
           <p>
             {formatCurrencyString({
