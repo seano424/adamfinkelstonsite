@@ -40,7 +40,7 @@ export default {
     {
       name: "currency",
       title: "Currency",
-      description: "Keep this 'usd' for the purposes of this tutorial",
+      description: "Keep this 'usd'",
       type: "string",
       options: {
         isHighlighted: true, // <-- make this field easily accessible
@@ -49,9 +49,18 @@ export default {
     {
       name: "quantity",
       title: "Quantity",
-      description:
-        "Optional. If you don't set this, it imagines the quantity for this is unlimited.",
       type: "number",
+      options: {
+        isHighlighted: true, // <-- make this field easily accessible
+      },
+    },
+    {
+      title: "Thumbnail examples of this image",
+      name: "thumbnails",
+      description:
+        "Optional. If you would like to display more about how this image looks to the viewer. They will show up as little thumbnails under the main image and the user can click on them to see other perspectives of this image.",
+      type: "array",
+      of: [{ type: "image" }],
       options: {
         isHighlighted: true, // <-- make this field easily accessible
       },

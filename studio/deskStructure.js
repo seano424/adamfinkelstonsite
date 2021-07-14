@@ -5,6 +5,7 @@ const hiddenDocTypes = (listItem) =>
   ![
     "artPiece",
     "artworkImages",
+    "artwork",
     "mediaTag",
     "category",
     "vendor",

@@ -43,7 +43,6 @@ export default async function handler(req, res) {
         },
         //The validated cart items are inserted.
         line_items: items_to_objects,
-        receipt_email: "jenny.rosen@example.com",
         success_url: `${req.headers.origin}/result?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${req.headers.origin}`,
       };
