@@ -38,15 +38,6 @@ export default {
       },
     },
     {
-      name: "currency",
-      title: "Currency",
-      description: "Keep this 'usd'",
-      type: "string",
-      options: {
-        isHighlighted: true, // <-- make this field easily accessible
-      },
-    },
-    {
       name: "quantity",
       title: "Quantity",
       type: "number",

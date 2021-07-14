@@ -15,7 +15,7 @@ export default async function handler(req, res) {
       const items_to_objects = cartItems.map((c) => {
         return {
           price_data: {
-            currency: c.currency,
+            currency: "usd",
             product_data: {
               name: c.title ? c.title : "Adam Finkelston Artwork",
               images: [imageBuilder(c.asset).url()],

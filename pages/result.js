@@ -1,11 +1,18 @@
+import { useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import useSWR from "swr";
 import PrintObject from "../components/PrintObject";
 import { fetchGetJSON } from "../utils/apiHelpers";
+import { useShoppingCart } from "use-shopping-cart";
 
 const ResultPage = () => {
+  const { clearCart } = useShoppingCart();
   const router = useRouter();
+
+  useEffect(() => {
+    clearCart();
+  }, []);
   // Fetch CheckoutSession from static page via
   // https://nextjs.org/docs/basic-features/data-fetching#static-generation
   const { data, error } = useSWR(
