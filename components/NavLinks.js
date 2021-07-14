@@ -70,10 +70,15 @@ export default function NavLinks() {
         <a
           href="https://www.facebook.com/AdamFinkelstonPhotography"
           target="_blank"
+          rel="noreferrer"
         >
           <FacebookIcon round={true} size={30} />
         </a>
-        <a href="https://www.instagram.com/adinfinitum138/" target="_blank">
+        <a
+          href="https://www.instagram.com/adinfinitum138/"
+          rel="noreferrer"
+          target="_blank"
+        >
           <FaInstagramSquare size={30} color={"tomato"} />
         </a>
 
