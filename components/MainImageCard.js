@@ -20,10 +20,13 @@ export default function ImageCard({ title, image, href }) {
       <Image
         src={imageBuilder(image).url()}
         alt={"Photography by Adam Finkelston"}
-        layout="fill"
+        layout="responsive"
         objectFit="cover"
         objectPosition="center"
         priority={true}
+        width={100}
+        height={100}
+        objectFit="cover"
       />
     </div>
   );
