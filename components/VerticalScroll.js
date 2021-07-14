@@ -85,7 +85,7 @@ export default function VerticalScroll({ images, title }) {
   return (
     <>
       {lightboxDisplay ? (
-        <section className="h-screen bg-black">
+        <section className="h-full bg-black">
           <div
             id="lightbox"
             onClick={hideLightBox}
@@ -128,42 +128,46 @@ export default function VerticalScroll({ images, title }) {
               </button>
             </div>
 
-            {imageToShow.price && (
-              <div className="text-white flex flex-col items-center">
-                <h3 className="uppercase text-lg pt-8">{imageToShow.title}</h3>
-                <p className="">{imageToShow.description}</p>
-                <p>
-                  {formatCurrencyString({
-                    value: imageToShow.price,
-                    currency: "usd",
-                  })}
-                </p>
-                <div className="flex flex-col h-28">
-                  {isAdded ? (
-                    <>
-                      <h1 className="w-80 font-black rounded mb-2 p-2 tracking-wider bg-gradient-to-r from-palette-primary  to-green-300 text-center">
-                        Item added :)
-                      </h1>
-                    </>
-                  ) : (
-                    <>
-                      <button
-                        className="w-80 mt-2 bg-palette-primary font-black rounded mb-2 p-2 tracking-wider"
-                        onClick={(e) => addToCart(e, imageToShow)}
-                      >
-                        Add to cart
-                      </button>
-                      <button
-                        className="w-80 bg-pink-500 font-black tracking-wider rounded p-2"
-                        onClick={() => removeItem(imageToShow._key)}
-                      >
-                        Remove from cart
-                      </button>
-                    </>
-                  )}
-                </div>
-              </div>
-            )}
+            <div className="text-white flex flex-col items-center">
+              <h3 className="uppercase text-lg pt-8">
+                {imageToShow.title} hello
+              </h3>
+              <p className="">{imageToShow.description}</p>
+              {imageToShow.price && (
+                <>
+                  <p>
+                    {formatCurrencyString({
+                      value: imageToShow.price,
+                      currency: "usd",
+                    })}
+                  </p>
+                  <div className="flex flex-col h-28">
+                    {isAdded ? (
+                      <>
+                        <h1 className="w-80 font-black rounded mb-2 p-2 tracking-wider bg-gradient-to-r from-palette-primary  to-green-300 text-center">
+                          Item added :)
+                        </h1>
+                      </>
+                    ) : (
+                      <>
+                        <button
+                          className="w-80 mt-2 bg-palette-primary font-black rounded mb-2 p-2 tracking-wider"
+                          onClick={(e) => addToCart(e, imageToShow)}
+                        >
+                          Add to cart
+                        </button>
+                        <button
+                          className="w-80 bg-pink-500 font-black tracking-wider rounded p-2"
+                          onClick={() => removeItem(imageToShow._key)}
+                        >
+                          Remove from cart
+                        </button>
+                      </>
+                    )}
+                  </div>
+                </>
+              )}
+            </div>
           </div>
         </section>
       ) : (

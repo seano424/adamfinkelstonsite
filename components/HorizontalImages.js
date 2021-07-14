@@ -137,45 +137,49 @@ export default function HorizontalImages({
             )}
           </div>
 
-          {imageToShow.price && (
-            <div className="text-white ">
+          <div className="text-white ">
+            {imageToShow.price && (
               <h2 className="uppercase text-center pb-10 text-3xl font-thin">
                 Artwork for Sale
               </h2>
-              <h3 className="uppercase text-xl">{imageToShow.title}</h3>
-              <p className=" w-96 py-1">{imageToShow.description}</p>
-              <p>
-                {formatCurrencyString({
-                  value: imageToShow.price,
-                  currency: "usd",
-                })}
-              </p>
-              <div className="flex flex-col h-28">
-                {isAdded ? (
-                  <>
-                    <h1 className="w-80 font-black rounded mb-2 p-2 tracking-wider bg-gradient-to-r from-palette-primary  to-green-300 text-center">
-                      Item added :)
-                    </h1>
-                  </>
-                ) : (
-                  <>
-                    <button
-                      className="w-80 mt-2 bg-palette-primary font-black rounded mb-2 p-2 tracking-wider"
-                      onClick={(e) => addToCart(e, imageToShow)}
-                    >
-                      Add to cart
-                    </button>
-                    <button
-                      className="w-80 bg-pink-500 font-black tracking-wider rounded p-2"
-                      onClick={() => removeItem(imageToShow._key)}
-                    >
-                      Remove from cart
-                    </button>
-                  </>
-                )}
-              </div>
-            </div>
-          )}
+            )}
+            <h3 className="uppercase text-xl">{imageToShow.title}</h3>
+            <p className=" w-96 py-1">{imageToShow.description}</p>
+            {imageToShow.price && (
+              <>
+                <p>
+                  {formatCurrencyString({
+                    value: imageToShow.price,
+                    currency: "usd",
+                  })}
+                </p>
+                <div className="flex flex-col h-28">
+                  {isAdded ? (
+                    <>
+                      <h1 className="w-80 font-black rounded mb-2 p-2 tracking-wider bg-gradient-to-r from-palette-primary  to-green-300 text-center">
+                        Item added :)
+                      </h1>
+                    </>
+                  ) : (
+                    <>
+                      <button
+                        className="w-80 mt-2 bg-palette-primary font-black rounded mb-2 p-2 tracking-wider"
+                        onClick={(e) => addToCart(e, imageToShow)}
+                      >
+                        Add to cart
+                      </button>
+                      <button
+                        className="w-80 bg-pink-500 font-black tracking-wider rounded p-2"
+                        onClick={() => removeItem(imageToShow._key)}
+                      >
+                        Remove from cart
+                      </button>
+                    </>
+                  )}
+                </div>
+              </>
+            )}
+          </div>
           <button className="text-white mr-10" onClick={showNext}>
             →
           </button>
