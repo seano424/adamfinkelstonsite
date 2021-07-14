@@ -30,12 +30,12 @@ export default function MobileNavbar({ open, toggle }) {
                 Prints
               </a>
             </Link>
-            <Link href="/photography">
+            <Link href="/photographs">
               <a
                 onClick={toggle}
                 className="text-2xl font-bold tracking-widest uppercase hover:opacity-60 hover:text-red-600 transition-all duration-75 ease-linear"
               >
-                Photography
+                Photographs
               </a>
             </Link>
 
