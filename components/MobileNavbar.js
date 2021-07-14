@@ -10,8 +10,8 @@ export default function MobileNavbar({ open, toggle }) {
           } transition-all duration-200 ease-linear z-20`}
         >
           <div
-            className={`flex flex-col mt-32 sm:mt-20 md:mt-32 lg:mt-0 items-center justify-center gap-y-7 w-full h-0 ${
-              open ? "h-400 sm:h-500 md:h-800 lg:h-full" : "h-0"
+            className={`flex flex-col mt-20 sm:mt-20 md:mt-32 lg:mt-0 items-center justify-center gap-y-7 w-full h-0 ${
+              open ? "h-500 sm:h-500 md:h-800 lg:h-full" : "h-0"
             } rounded-full lg:rounded bg-gray-200 bg-opacity-90  transition-all duration-500 ease-linear border-2`}
           >
             <Link href="/">
@@ -61,6 +61,14 @@ export default function MobileNavbar({ open, toggle }) {
                 className="text-2xl font-bold tracking-widest uppercase hover:opacity-60 hover:text-red-600 transition-all duration-75 ease-linear"
               >
                 Newsletter
+              </a>
+            </Link>
+            <Link href="/cart">
+              <a
+                onClick={toggle}
+                className="text-2xl font-bold tracking-widest uppercase hover:opacity-60 hover:text-red-600 transition-all duration-75 ease-linear"
+              >
+                Cart
               </a>
             </Link>
           </div>
