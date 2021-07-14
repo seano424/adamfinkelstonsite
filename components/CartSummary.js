@@ -18,6 +18,7 @@ export default function CartSummary() {
     redirectToCheckout,
     incrementItem,
     decrementItem,
+    removeItem,
   } = useShoppingCart();
 
   console.log(cartDetails);
@@ -121,7 +122,7 @@ export default function CartSummary() {
                   <button
                     aria-label="delete-item"
                     className=""
-                    onClick={clearCart}
+                    onClick={() => removeItem(item.id)}
                   >
                     <FaTimes className="w-8 h-8 text-palette-primary border border-palette-primary p-1 hover:bg-palette-lighter" />
                   </button>
