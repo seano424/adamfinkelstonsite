@@ -23,6 +23,7 @@ export default function ImageCard({ title, image, href }) {
         layout="fill"
         objectFit="cover"
         objectPosition="center"
+        priority={true}
       />
     </div>
   );
