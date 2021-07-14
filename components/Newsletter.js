@@ -110,7 +110,7 @@ const SignupForm = ({ status, message, onValidated }) => {
 export default function Newsletter() {
   const url =
     "https://adamfinkelstonphotography.us6.list-manage.com/subscribe/post";
-  const postUrl = `${url}?u=${process.env.NEXT_PUBLIC_SANITY_MAILCHIMP_U}&id=${process.env.NEXT_PUBLIC_SANITY_MAILCHIMP_ID}`;
+  const postUrl = `${url}?u=bd6d6a1c39&id=97985cc2e1`;
   return (
     <div>
       <MailchimpSubscribe
