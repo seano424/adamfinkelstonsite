@@ -22,10 +22,6 @@ export default function NavLinks() {
   //   setCartItems(numItems);
   // }, [cart]);
 
-  const handleClick = (e) => {
-    console.log(shoppingCart);
-  };
-
   const { pathname } = useRouter();
   const router = useRouter();
   const url = `https://fink.vercel.app${router.asPath}`;
@@ -101,11 +97,7 @@ export default function NavLinks() {
             aria-label="cart"
             passhref="true"
           >
-            <FaShoppingCart
-              onClick={handleClick}
-              className="w-6 h-5 m-auto"
-              passhref="true"
-            />
+            <FaShoppingCart className="w-6 h-5 m-auto" passhref="true" />
             {cartCount === 0 ? null : (
               <div
                 aria-label="cart"

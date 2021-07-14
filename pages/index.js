@@ -3,13 +3,6 @@ import { getAllArt } from "@/lib/api";
 import { formatCurrencyString } from "use-shopping-cart";
 
 export default function galleries({ art }) {
-  const artPieces = art.map((a) => a.artPieces).flat();
-  const artFiltered = artPieces.filter((art) => art.price);
-  const artWithIds = artFiltered.map((art) => {
-    return { ...art, id: art._key };
-  });
-  console.log(artWithIds);
-
   const photographs = art
     .filter((art) => art.category === "photographs")
     .map((item) => item.artPieces)

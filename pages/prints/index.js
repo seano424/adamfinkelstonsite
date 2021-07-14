@@ -2,7 +2,6 @@ import { getPrints } from "../../lib/api";
 import ImageCard from "../../components/ImageCard";
 
 export default function galleries({ art }) {
-  console.log("art:", art);
   return <ImageCard images={art} />;
 }
 

@@ -2,7 +2,6 @@ import React from "react";
 import Products from "../../components/Products";
 import client from "../../lib/sanity";
 import { merchQuery, getAllArt } from "../../lib/api";
-import Image from "next/image";
 
 export default function index({ products, art }) {
   const artPieces = art.map((a) => a.artPieces).flat();
@@ -10,8 +9,6 @@ export default function index({ products, art }) {
   const artWithIds = artFiltered.map((art) => {
     return { ...art, id: art._key };
   });
-  console.log(artWithIds);
-  console.log(products);
   return (
     <main className="mx-40">
       <Products products={artWithIds} />
