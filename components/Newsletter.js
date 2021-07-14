@@ -1,15 +1,15 @@
-import MailchimpSubscribe from 'react-mailchimp-subscribe'
-import { Formik, Form, useField } from 'formik'
-import * as Yup from 'yup'
+import MailchimpSubscribe from "react-mailchimp-subscribe";
+import { Formik, Form, useField } from "formik";
+import * as Yup from "yup";
 
 const MyTextInput = ({ label, ...props }) => {
-  const [field, meta] = useField(props)
+  const [field, meta] = useField(props);
   return (
     <div className="flex flex-col w-full">
       <label htmlFor={props.id || props.name}>{label}</label>
       <input
         className={`text-input ${
-          meta.touched && meta.error && 'animate-shake'
+          meta.touched && meta.error && "animate-shake"
         }`}
         {...field}
         {...props}
@@ -20,31 +20,31 @@ const MyTextInput = ({ label, ...props }) => {
         </div>
       ) : null}
     </div>
-  )
-}
+  );
+};
 
 const SignupForm = ({ status, message, onValidated }) => {
   return (
     <>
       <Formik
-        initialValues={{ firstName: '', lastName: '', email: '' }}
+        initialValues={{ firstName: "", lastName: "", email: "" }}
         validationSchema={Yup.object({
-          email: Yup.string().email('Invalid email address'),
+          email: Yup.string().email("Invalid email address"),
         })}
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
             onValidated({
               EMAIL: values.email,
-            })
-            setSubmitting(false)
-          }, 400)
+            });
+            setSubmitting(false);
+          }, 400);
         }}
       >
         {(formik) => (
-          <section className="w-9/12 lg:w-7/12 m-auto">
+          <section className="bg-black p-10 pb-20 rounded-2xl m-auto">
             <article>
               <h1 className="text-4xl text-center lg:px-8 py-6 rounded text-white font-black bg-black">
-                Send me the Adam Finkelston Artist Newsletter via e-mail!
+                Sign up for Adam's Newsletter
               </h1>
             </article>
 
@@ -81,18 +81,18 @@ const SignupForm = ({ status, message, onValidated }) => {
                 </div>
               </article>
               <article>
-                {status === 'sending' && (
+                {status === "sending" && (
                   <div className="mc__alert mc__alert--sending bg-green-300 p-1 rounded-b">
                     sending...
                   </div>
                 )}
-                {status === 'error' && (
+                {status === "error" && (
                   <div
                     className="mc__alert mc__alert--error bg-red-300 p-1 rounded-b"
                     dangerouslySetInnerHTML={{ __html: message }}
                   />
                 )}
-                {status === 'success' && (
+                {status === "success" && (
                   <div
                     className="mc__alert mc__alert--success bg-green-400 p-1 rounded-b"
                     dangerouslySetInnerHTML={{ __html: message }}
@@ -104,12 +104,12 @@ const SignupForm = ({ status, message, onValidated }) => {
         )}
       </Formik>
     </>
-  )
-}
+  );
+};
 
 export default function Newsletter() {
-  const url = 'https://gmail.us10.list-manage.com/subscribe/post'
-  const postUrl = `${url}?u=${process.env.NEXT_PUBLIC_SANITY_MAILCHIMP_U}&id=${process.env.NEXT_PUBLIC_SANITY_MAILCHIMP_ID}`
+  const url = "https://gmail.us10.list-manage.com/subscribe/post";
+  const postUrl = `${url}?u=${process.env.NEXT_PUBLIC_SANITY_MAILCHIMP_U}&id=${process.env.NEXT_PUBLIC_SANITY_MAILCHIMP_ID}`;
   return (
     <div>
       <MailchimpSubscribe
@@ -123,5 +123,5 @@ export default function Newsletter() {
         )}
       />
     </div>
-  )
+  );
 }
