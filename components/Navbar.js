@@ -28,10 +28,7 @@ export default function Navbar({ prints, photographs }) {
         open ? "" : "md:static bg-white md:bg-opacity-95"
       } xl:flex-col lg:pt-16 pt-10 items-center xl:mb-0 justify-between z-50  w-screen gap-4`}
     >
-      <div className="pl-10 xl:pl-0 md:pl-20 z-50 flex justify-between w-full items-center xl:flex-col">
-        <div className="xl:hidden">
-          <BackButton />
-        </div>
+      <div className="z-50 mx-4 flex justify-between w-full items-center xl:flex-col">
         <NavLogo />
         <NavLinks
           isSetToGoBack={isSetToGoBack}

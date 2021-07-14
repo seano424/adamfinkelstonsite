@@ -1,4 +1,4 @@
-import ImageCard from "@/components/ImageCard";
+import MainImageCard from "@/components/MainImageCard";
 import { getAllArt } from "@/lib/api";
 import { formatCurrencyString } from "use-shopping-cart";
 
@@ -25,13 +25,13 @@ export default function galleries({ art }) {
   const randomPrint = prints[Math.floor(Math.random() * prints.length)];
 
   return (
-    <main className="flex my-20 xl:mx-40 mx-10 justify-center gap-10">
-      <ImageCard
-        href={"/photography"}
-        title="View Photography"
+    <main className="flex flex-col lg:flex-row mt-10 sm:mt-20 xl:mx-40 mx-10 justify-center gap-10">
+      <MainImageCard
+        href={"/photographs"}
+        title="View Photographs"
         image={randomPhoto.asset}
       />
-      <ImageCard
+      <MainImageCard
         href={"/prints"}
         title="View Prints"
         image={randomPrint.asset}

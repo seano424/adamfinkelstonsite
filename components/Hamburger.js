@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 
 export default function Hamburger({ toggle, open }) {
   return (
     <article
       onClick={toggle}
-      className={`xl:hidden z-50 pr-10 md:pr-20 xl:pl-0 cursor-pointer flex flex-col justify-center ${
-        open ? 'p-3' : 'p-3'
+      className={`xl:hidden z-50 cursor-pointer flex flex-col justify-center ${
+        open ? "p-3" : "p-3"
       }`}
     >
       <div
@@ -26,5 +26,5 @@ export default function Hamburger({ toggle, open }) {
         }`}
       />
     </article>
-  )
+  );
 }

@@ -1,7 +1,7 @@
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { imageBuilder } from "@/lib/sanity";
-import { useEffect, useState } from "react";
 import { useShoppingCart, formatCurrencyString } from "use-shopping-cart";
 
 export default function HorizontalImages({
@@ -16,9 +16,6 @@ export default function HorizontalImages({
   const [isAdded, setIsAdded] = useState(false);
   const [mainImage, setMainImage] = useState(images[0].asset);
   const { addItem, removeItem } = useShoppingCart();
-  const shoppingCart = useShoppingCart();
-
-  console.log(images);
 
   useEffect(() => {
     isGoingDown ? setState(true) : setState(false);
@@ -189,7 +186,7 @@ export default function HorizontalImages({
           onWheel={(e) =>
             setDelta((e.currentTarget.scrollLeft += e.deltaY + e.deltaX))
           }
-          className="flex-1 overflow-y-hidden flex gap-x-10 md:h-screen pt-28 lg:pt-0"
+          className="flex-1 hidden lg:flex overflow-y-hidden gap-x-10 md:h-screen pt-28 lg:pt-0"
         >
           {images.map((image, idx) => (
             <div key={idx} className="min-w-max group">
