@@ -87,7 +87,7 @@ export default function CartSummary() {
                     }
                     height={200}
                     width={200}
-                    className={`hidden sm:inline-flex`}
+                    className={`inline-flex w-20 sm:w-full`}
                   />
                   {item.title && (
                     <h1 className="pt-1 hover:text-palette-dark">

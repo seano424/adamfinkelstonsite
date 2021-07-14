@@ -129,9 +129,7 @@ export default function VerticalScroll({ images, title }) {
             </div>
 
             <div className="text-white flex flex-col items-center">
-              <h3 className="uppercase text-lg pt-8">
-                {imageToShow.title} hello
-              </h3>
+              <h3 className="uppercase text-lg pt-8">{imageToShow.title}</h3>
               <p className="">{imageToShow.description}</p>
               {imageToShow.price && (
                 <>
