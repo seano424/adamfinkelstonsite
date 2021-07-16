@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import { imageBuilder } from "@/lib/sanity";
 import { useShoppingCart, formatCurrencyString } from "use-shopping-cart";
 import { useTheme } from "next-themes";
+import ToggleTheme from "@/components/ToggleTheme";
 
 export default function HorizontalImages({
   images,
@@ -17,7 +17,7 @@ export default function HorizontalImages({
   const [isAdded, setIsAdded] = useState(false);
   const [mainImage, setMainImage] = useState(images[0].asset);
   const { addItem, removeItem } = useShoppingCart();
-  const { theme, setTheme } = useTheme();
+  const { theme } = useTheme();
 
   useEffect(() => {
     isGoingDown ? setState(true) : setState(false);
@@ -99,12 +99,6 @@ export default function HorizontalImages({
     setMainImage(image);
   };
 
-  const toggle = () => {
-    theme === "dark" ? setTheme("light") : setTheme("dark");
-  };
-
-  console.log(theme);
-
   return (
     <>
       {lightboxDisplay ? (
@@ -149,86 +143,60 @@ export default function HorizontalImages({
               )}
             </div>
 
-            {imageToShow.price && (
-              <div className="text-white ">
+            <div className="text-white ">
+              {imageToShow.price && (
                 <h2 className="uppercase italic text-gray-900 dark:text-white font-thin">
                   Item for Sale
                 </h2>
+              )}
 
+              <div className="py-4">
                 {imageToShow.title && (
-                  <div className="py-4">
-                    <h3 className="uppercase text-xl text-gray-900 dark:text-white">
-                      {imageToShow.title}
-                    </h3>
-                    <p className="w-96 py-1 text-gray-900 dark:text-white">
-                      {imageToShow.description}
-                    </p>
-                  </div>
+                  <h3 className="uppercase text-xl text-gray-900 dark:text-white">
+                    {imageToShow.title}
+                  </h3>
                 )}
-                {imageToShow.price && (
-                  <>
-                    <p className="text-gray-900 dark:text-white">
-                      {formatCurrencyString({
-                        value: imageToShow.price * 100,
-                        currency: "usd",
-                      })}
-                    </p>
-                    <div className="flex flex-col h-28">
-                      <>
-                        <button
-                          className={`w-80 mt-2 ${
-                            isAdded &&
-                            "bg-gradient-to-r from-palette-primary to-green-300"
-                          } bg-palette-primary font-black rounded mb-2 p-2 tracking-wider transition-all duration-300 ease-linear`}
-                          onClick={(e) => addToCart(e, imageToShow)}
-                        >
-                          {isAdded ? "Item added" : "Add to cart"}
-                        </button>
-                        <button
-                          className="w-80 bg-pink-500 font-black tracking-wider rounded p-2"
-                          onClick={() => removeItem(imageToShow._key)}
-                        >
-                          Remove from cart
-                        </button>
-
-                        <div
-                          onClick={(e) => e.stopPropagation()}
-                          class="flex justify-end w-80 my-2"
-                        >
-                          <label
-                            for="toggleB"
-                            class="flex items-center cursor-pointer"
-                          >
-                            {/* <!-- label --> */}
-                            <div
-                              class={`mr-3 text-gray-200 dark:text-gray-600  font-medium`}
-                            >
-                              {theme === "dark"
-                                ? "View lighter mode"
-                                : "View darker mode"}
-                            </div>
-                            {/* <!-- toggle --> */}
-                            <div class="relative">
-                              {/* <!-- input --> */}
-                              <input
-                                type="checkbox"
-                                id="toggleB"
-                                class="sr-only"
-                                onChange={toggle}
-                              />
-                              {/* <!-- line --> */}
-                              <div class="block bg-gray-400 dark:bg-gray-200 w-14 h-8 rounded-full"></div>
-                              {/* <!-- dot --> */}
-                              <div class="dot absolute left-1 top-1 bg-white dark:bg-green-200 w-6 h-6 rounded-full transition"></div>
-                            </div>
-                          </label>
-                        </div>
-                      </>
-                    </div>
-                  </>
+                {imageToShow.description && (
+                  <p className="w-96 py-1 text-gray-900 dark:text-white">
+                    {imageToShow.description}
+                  </p>
                 )}
               </div>
-            )}
+              <>
+                {imageToShow.price && (
+                  <p className="text-gray-900 dark:text-white">
+                    {formatCurrencyString({
+                      value: imageToShow.price * 100,
+                      currency: "usd",
+                    })}
+                  </p>
+                )}
+                <div className="flex flex-col h-28">
+                  {imageToShow.price && (
+                    <>
+                      <button
+                        className={`w-80 mt-2 ${
+                          isAdded &&
+                          "bg-gradient-to-r from-palette-primary to-green-300"
+                        } bg-palette-primary font-black rounded mb-2 p-2 tracking-wider transition-all duration-300 ease-linear`}
+                        onClick={(e) => addToCart(e, imageToShow)}
+                      >
+                        {isAdded ? "Item added" : "Add to cart"}
+                      </button>
+                      <button
+                        className="w-80 bg-pink-500 font-black tracking-wider rounded p-2"
+                        onClick={() => removeItem(imageToShow._key)}
+                      >
+                        Remove from cart
+                      </button>
+                    </>
+                  )}
+
+                  <ToggleTheme />
+                </div>
+              </>
+            </div>
+
             <button
               className="text-gray-900 dark:text-white mr-10"
               onClick={showNext}

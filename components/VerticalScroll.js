@@ -4,6 +4,8 @@ import Image from "next/image";
 import { imageBuilder } from "../lib/sanity";
 import { useShoppingCart, formatCurrencyString } from "use-shopping-cart";
 import BackButton from "./BackButton";
+import { useTheme } from "next-themes";
+import ToggleTheme from "./ToggleTheme";
 
 export default function VerticalScroll({ images, title }) {
   const [state, setState] = useState(false);
@@ -12,6 +14,7 @@ export default function VerticalScroll({ images, title }) {
   const [isAdded, setIsAdded] = useState(false);
   const [mainImage, setMainImage] = useState(images[0].asset);
   const { addItem, removeItem } = useShoppingCart();
+  const { theme, setTheme } = useTheme();
 
   // USEEFFECT
   useEffect(() => {
@@ -82,6 +85,11 @@ export default function VerticalScroll({ images, title }) {
     e.stopPropagation();
     setMainImage(image);
   };
+  const toggle = () => {
+    theme === "dark" ? setTheme("light") : setTheme("dark");
+  };
+
+  console.log(theme);
   return (
     <>
       {lightboxDisplay ? (
@@ -92,7 +100,10 @@ export default function VerticalScroll({ images, title }) {
             className="z-50 pt-20 flex flex-col items-center justify-between"
           >
             <div className="flex gap-4 mx-1">
-              <button className="text-white" onClick={showPrev}>
+              <button
+                className=" dark:text-gray-900 text-white"
+                onClick={showPrev}
+              >
                 ←
               </button>
               <div className="flex flex-col gap-7">
@@ -139,29 +150,25 @@ export default function VerticalScroll({ images, title }) {
                       currency: "usd",
                     })}
                   </p>
-                  <div className="flex flex-col h-28">
-                    {isAdded ? (
-                      <>
-                        <h1 className="w-80 font-black rounded mb-2 p-2 tracking-wider bg-gradient-to-r from-palette-primary  to-green-300 text-center">
-                          Item added :)
-                        </h1>
-                      </>
-                    ) : (
-                      <>
-                        <button
-                          className="w-80 mt-2 bg-palette-primary font-black rounded mb-2 p-2 tracking-wider"
-                          onClick={(e) => addToCart(e, imageToShow)}
-                        >
-                          Add to cart
-                        </button>
-                        <button
-                          className="w-80 bg-pink-500 font-black tracking-wider rounded p-2"
-                          onClick={() => removeItem(imageToShow._key)}
-                        >
-                          Remove from cart
-                        </button>
-                      </>
-                    )}
+                  <div className="flex flex-col h-40">
+                    <>
+                      <button
+                        className={`w-80 mt-2 ${
+                          isAdded &&
+                          "bg-gradient-to-r from-palette-primary to-green-300"
+                        } bg-palette-primary font-black rounded mb-2 p-2 tracking-wider transition-all duration-300 ease-linear`}
+                        onClick={(e) => addToCart(e, imageToShow)}
+                      >
+                        {isAdded ? "Item added" : "Add to cart"}
+                      </button>
+                      <button
+                        className="w-80 bg-pink-500 font-black tracking-wider rounded p-2"
+                        onClick={() => removeItem(imageToShow._key)}
+                      >
+                        Remove from cart
+                      </button>
+                      <ToggleTheme />
+                    </>
                   </div>
                 </>
               )}
