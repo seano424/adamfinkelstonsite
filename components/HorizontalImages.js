@@ -139,15 +139,13 @@ export default function HorizontalImages({
 
           {imageToShow.price && (
             <div className="text-white ">
-              <h2 className="uppercase text-center pb-10 text-3xl font-thin">
-                Artwork for Sale
-              </h2>
+              <h2 className="uppercase italic font-thin">Item for Sale</h2>
 
               {imageToShow.title && (
-                <>
+                <div className="py-4">
                   <h3 className="uppercase text-xl">{imageToShow.title}</h3>
                   <p className=" w-96 py-1">{imageToShow.description}</p>
-                </>
+                </div>
               )}
               {imageToShow.price && (
                 <>
