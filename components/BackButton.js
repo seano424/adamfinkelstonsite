@@ -13,7 +13,7 @@ export default function BackButton({ size }) {
   };
 
   const isSetToGoBack =
-    pathname.includes("/photography") || pathname.includes("/prints");
+    pathname.includes("/photographs") || pathname.includes("/prints");
 
   return (
     <>
