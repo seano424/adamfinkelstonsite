@@ -28,6 +28,12 @@ export default function ImageCard({ title, image, href }) {
         height={100}
         objectFit="cover"
       />
+      {/* <img
+        src={imageBuilder(image).url()}
+        alt="Photo by Adam Finkelston"
+        height="500px"
+        width="500px"
+      /> */}
     </div>
   );
 }

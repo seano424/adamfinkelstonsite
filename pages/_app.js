@@ -5,15 +5,18 @@ import Layout from "@/components/Layout";
 import { CartProvider } from "use-shopping-cart";
 import getStripe from "../lib/stripe/getStripe";
 import Meta from "@/components/Meta";
+import { ThemeProvider } from "next-themes";
 
 function MyApp({ Component, pageProps }) {
   return (
     <CartProvider mode="checkout-session" stripe={getStripe()} currency={"usd"}>
-      <Layout>
-        <Meta />
-        <SEO title={process.env.siteTitle} />
-        <Component {...pageProps} />
-      </Layout>
+      <ThemeProvider>
+        <Layout>
+          <Meta />
+          <SEO title={process.env.siteTitle} />
+          <Component {...pageProps} />
+        </Layout>
+      </ThemeProvider>
     </CartProvider>
   );
 }

@@ -1,5 +1,5 @@
-import Meta from '../components/Meta'
-import Navbar from './Navbar'
+import Meta from "../components/Meta";
+import Navbar from "./Navbar";
 
 export default function Layout({ children, artPieces, photographs, prints }) {
   return (
@@ -10,9 +10,11 @@ export default function Layout({ children, artPieces, photographs, prints }) {
       >
         <Navbar photographs={photographs} prints={prints} />
       </section>
-      <section className="pt-32 md:pt-0 relative md:static">{children}</section>
+      <section className="pt-32 md:pt-0 relative md:static bg-white dark:bg-white">
+        {children}
+      </section>
     </>
-  )
+  );
 }
 
 //flex-col min-h-screen

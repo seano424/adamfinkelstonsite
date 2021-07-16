@@ -18,7 +18,7 @@ export default function galleries({ art }) {
   const randomPrint = prints[Math.floor(Math.random() * prints.length)];
 
   return (
-    <main className="flex flex-col lg:flex-row mt-10 sm:mt-20 xl:mx-40 mx-10 justify-center gap-10">
+    <main className="flex flex-col lg:flex-row mt-10 sm:mt-20 xl:mx-40 mx-10 dark:bg-white justify-center gap-10">
       <MainImageCard
         href={"/photographs"}
         title="View Photographs"
@@ -40,79 +40,3 @@ export async function getStaticProps({ preview = false }) {
     revalidate: 1,
   };
 }
-
-// cartItems: {
-//     '92f164b087b6': {
-//       _key: '92f164b087b6',
-//       _type: 'artPiece',
-//       asset: {
-//         _ref: 'image-285d2265f557fe7a44e31b3cbe9e2d446aa6a7a6-1000x1000-jpg',
-//         _type: 'reference'
-//       },
-//       price: 500,
-//       quantity: 1,
-//       id: '92f164b087b6',
-//       value: 500,
-//       formattedValue: '$5.00'
-//     },
-//     '0706c11471e2': {
-//       _key: '0706c11471e2',
-//       _type: 'artPiece',
-//       asset: {
-//         _ref: 'image-03837318740540fc21067a97f4c7f181deb15734-1000x1000-jpg',
-//         _type: 'reference'
-//       },
-//       price: 800,
-//       quantity: 1,
-//       id: '0706c11471e2',
-//       value: 800,
-//       formattedValue: '$8.00'
-//     }
-//   }
-
-//   props: [
-//     {
-//       '92f164b087b6': {
-//         _key: '92f164b087b6',
-//         _type: 'artPiece',
-//         asset: [Object],
-//         price: 500,
-//         quantity: 1,
-//         id: '92f164b087b6',
-//         value: 500,
-//         formattedValue: '$5.00'
-//       },
-//       '0706c11471e2': {
-//         _key: '0706c11471e2',
-//         _type: 'artPiece',
-//         asset: [Object],
-//         price: 800,
-//         quantity: 1,
-//         id: '0706c11471e2',
-//         value: 800,
-//         formattedValue: '$8.00'
-//       }
-//     },
-//     {
-//       '92f164b087b6': {
-//         _key: '92f164b087b6',
-//         _type: 'artPiece',
-//         asset: [Object],
-//         price: 500,
-//         quantity: 1,
-//         id: '92f164b087b6',
-//         value: 500,
-//         formattedValue: '$5.00'
-//       },
-//       '0706c11471e2': {
-//         _key: '0706c11471e2',
-//         _type: 'artPiece',
-//         asset: [Object],
-//         price: 800,
-//         quantity: 1,
-//         id: '0706c11471e2',
-//         value: 800,
-//         formattedValue: '$8.00'
-//       }
-//     }
-//   ]
