@@ -19,17 +19,16 @@ export default function CartSummary() {
     incrementItem,
     decrementItem,
     removeItem,
+    totalPrice,
   } = useShoppingCart();
 
-  console.log(cartDetails);
-
+  const shoppingCart = useShoppingCart();
+  console.log(shoppingCart);
   const entries = [];
   for (const key in cartDetails) {
     const entry = cartDetails[key];
     entries.push(entry);
   }
-
-  console.log(entries);
 
   //sets our cartEmpty state with cart data
   useEffect(() => setCartEmpty(!cartCount), [cartCount]);
@@ -142,7 +141,12 @@ export default function CartSummary() {
                   Subtotal
                 </td>
                 <td className="font-primary text-lg text-palette-primary font-medium px-4 sm:px-6 py-4">
-                  <span className="text-xl">{formattedTotalPrice}</span>
+                  <span className="text-xl">
+                    {formatCurrencyString({
+                      value: totalPrice * 100,
+                      currency: "usd",
+                    })}
+                  </span>
                 </td>
                 <td></td>
               </tr>
