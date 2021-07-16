@@ -1,10 +1,14 @@
 module.exports = {
   purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: "class", // or 'media' or 'class'
   theme: {
     extend: {
       animation: {
         shake: "shake 1s linear 1",
+      },
+      transitionProperty: {
+        height: "height",
+        backgroundColor: "background-color",
       },
       keyframes: {
         shake: {

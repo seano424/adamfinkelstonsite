@@ -10,7 +10,7 @@ import { ThemeProvider } from "next-themes";
 function MyApp({ Component, pageProps }) {
   return (
     <CartProvider mode="checkout-session" stripe={getStripe()} currency={"usd"}>
-      <ThemeProvider>
+      <ThemeProvider attribute="class">
         <Layout>
           <Meta />
           <SEO title={process.env.siteTitle} />

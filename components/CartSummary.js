@@ -23,7 +23,6 @@ export default function CartSummary() {
   } = useShoppingCart();
 
   const shoppingCart = useShoppingCart();
-  console.log(shoppingCart);
   const entries = [];
   for (const key in cartDetails) {
     const entry = cartDetails[key];
@@ -51,7 +50,6 @@ export default function CartSummary() {
   };
 
   const updateItem = (quantity, value, id) => {
-    console.log("value:", value, "quantity:", quantity, "id:", id);
     value > quantity && incrementItem(id);
     value < quantity && decrementItem(id);
   };

@@ -99,12 +99,11 @@ export default function HorizontalImages({
     setMainImage(image);
   };
 
-  const toggle = (e) => {
-    e.stopPropagation();
-    setTheme("light");
-    // theme === "dark" ? setTheme("light") : setTheme("dark");
+  const toggle = () => {
+    theme === "dark" ? setTheme("light") : setTheme("dark");
   };
-  console.log(theme === "dark");
+
+  console.log(theme);
 
   return (
     <>
@@ -113,9 +112,12 @@ export default function HorizontalImages({
           <div
             id="lightbox"
             onClick={hideLightBox}
-            className="z-50 xl:fixed top-0 left-0 w-full lg:h-full bg-black dark:bg-white flex flex-col xl:flex-row items-center justify-between"
+            className="z-50 xl:fixed top-0 left-0 w-full lg:h-full bg-white dark:bg-black flex flex-col xl:flex-row items-center justify-between"
           >
-            <button className="text-white ml-10" onClick={showPrev}>
+            <button
+              className="text-gray-900 dark:text-white ml-10 "
+              onClick={showPrev}
+            >
               ←
             </button>
             <div className="flex flex-col gap-7">
@@ -149,78 +151,88 @@ export default function HorizontalImages({
 
             {imageToShow.price && (
               <div className="text-white ">
-                <h2 className="uppercase italic font-thin">Item for Sale</h2>
+                <h2 className="uppercase italic text-gray-900 dark:text-white font-thin">
+                  Item for Sale
+                </h2>
 
                 {imageToShow.title && (
                   <div className="py-4">
-                    <h3 className="uppercase text-xl">{imageToShow.title}</h3>
-                    <p className=" w-96 py-1">{imageToShow.description}</p>
+                    <h3 className="uppercase text-xl text-gray-900 dark:text-white">
+                      {imageToShow.title}
+                    </h3>
+                    <p className="w-96 py-1 text-gray-900 dark:text-white">
+                      {imageToShow.description}
+                    </p>
                   </div>
                 )}
                 {imageToShow.price && (
                   <>
-                    <p>
+                    <p className="text-gray-900 dark:text-white">
                       {formatCurrencyString({
                         value: imageToShow.price * 100,
                         currency: "usd",
                       })}
                     </p>
                     <div className="flex flex-col h-28">
-                      {isAdded ? (
-                        <>
-                          <h1 className="w-80 font-black rounded mb-2 p-2 tracking-wider bg-gradient-to-r from-palette-primary  to-green-300 text-center">
-                            Item added :)
-                          </h1>
-                        </>
-                      ) : (
-                        <>
-                          <button
-                            className="w-80 mt-2 bg-palette-primary font-black rounded mb-2 p-2 tracking-wider"
-                            onClick={(e) => addToCart(e, imageToShow)}
+                      <>
+                        <button
+                          className={`w-80 mt-2 ${
+                            isAdded &&
+                            "bg-gradient-to-r from-palette-primary to-green-300"
+                          } bg-palette-primary font-black rounded mb-2 p-2 tracking-wider transition-all duration-300 ease-linear`}
+                          onClick={(e) => addToCart(e, imageToShow)}
+                        >
+                          {isAdded ? "Item added" : "Add to cart"}
+                        </button>
+                        <button
+                          className="w-80 bg-pink-500 font-black tracking-wider rounded p-2"
+                          onClick={() => removeItem(imageToShow._key)}
+                        >
+                          Remove from cart
+                        </button>
+
+                        <div
+                          onClick={(e) => e.stopPropagation()}
+                          class="flex justify-end w-80 my-2"
+                        >
+                          <label
+                            for="toggleB"
+                            class="flex items-center cursor-pointer"
                           >
-                            Add to cart
-                          </button>
-                          <button
-                            className="w-80 bg-pink-500 font-black tracking-wider rounded p-2"
-                            onClick={() => removeItem(imageToShow._key)}
-                          >
-                            Remove from cart
-                          </button>
-                          <div
-                            onClick={toggle}
-                            class="flex justify-end w-80 my-2"
-                          >
-                            <label
-                              for="toggleB"
-                              class="flex items-center cursor-pointer"
+                            {/* <!-- label --> */}
+                            <div
+                              class={`mr-3 text-gray-200 dark:text-gray-600  font-medium`}
                             >
-                              {/* <!-- label --> */}
-                              <div class="mr-3 text-gray-700 font-medium">
-                                Lighter Mode!
-                              </div>
-                              {/* <!-- toggle --> */}
-                              <div class="relative">
-                                {/* <!-- input --> */}
-                                <input
-                                  type="checkbox"
-                                  id="toggleB"
-                                  class="sr-only"
-                                />
-                                {/* <!-- line --> */}
-                                <div class="block bg-gray-600 w-14 h-8 rounded-full"></div>
-                                {/* <!-- dot --> */}
-                                <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
-                              </div>
-                            </label>
-                          </div>
-                        </>
-                      )}
+                              {theme === "dark"
+                                ? "View lighter mode"
+                                : "View darker mode"}
+                            </div>
+                            {/* <!-- toggle --> */}
+                            <div class="relative">
+                              {/* <!-- input --> */}
+                              <input
+                                type="checkbox"
+                                id="toggleB"
+                                class="sr-only"
+                                onChange={toggle}
+                              />
+                              {/* <!-- line --> */}
+                              <div class="block bg-gray-400 dark:bg-gray-200 w-14 h-8 rounded-full"></div>
+                              {/* <!-- dot --> */}
+                              <div class="dot absolute left-1 top-1 bg-white dark:bg-green-200 w-6 h-6 rounded-full transition"></div>
+                            </div>
+                          </label>
+                        </div>
+                      </>
                     </div>
                   </>
                 )}
               </div>
             )}
-            <button className="text-white mr-10" onClick={showNext}>
+            <button
+              className="text-gray-900 dark:text-white mr-10"
+              onClick={showNext}
+            >
               →
             </button>
           </div>
@@ -255,7 +267,7 @@ export default function HorizontalImages({
                 )}
               </div>
               {image.title && (
-                <div className="flex relative shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-200 ease-linear text-sm px-8 py-1 justify-center w-72 bg-gray-100 gap-x-10 uppercase tracking-widest m-auto">
+                <div className="flex opacity-10 relative shadow-lg text-gray-800 group-hover:opacity-100 transition-all duration-200 ease-linear text-sm px-8 py-1 justify-center w-72 bg-gray-100 gap-x-10 uppercase tracking-widest m-auto">
                   <h1 className="italic">{image.title}</h1>
                 </div>
               )}
