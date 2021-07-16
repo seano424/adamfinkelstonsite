@@ -59,11 +59,14 @@ export default function CartSummary() {
 
   return (
     <>
-      <div className="min-h-80 max-w-2xl my-4 sm:my-8 mx-auto w-full">
+      <div className="min-h-80 max-w-4xl my-4 sm:my-8 mx-auto w-full">
         <table className="mx-auto">
           <thead>
             <tr className="uppercase text-xs sm:text-sm text-palette-primary border-b border-palette-light">
               <th className="font-primary font-normal px-6 py-4">Product</th>
+              <th className="font-primary font-normal px-6 py-4">
+                Description
+              </th>
               <th className="font-primary font-normal px-6 py-4">Quantity</th>
               <th className="font-primary font-normal px-6 py-4 hidden sm:table-cell">
                 Price
@@ -87,10 +90,13 @@ export default function CartSummary() {
                     }
                     height={200}
                     width={200}
+                    layout="responsive"
                     className={`inline-flex w-20 sm:w-full`}
                   />
+                </td>
+                <td className="font-primary font-medium px-4 sm:px-6 py-4">
                   {item.title && (
-                    <h1 className="pt-1 hover:text-palette-dark">
+                    <h1 className="pt-1 flex-1 hover:text-palette-dark">
                       {item.title}, {item.description && item.description}
                     </h1>
                   )}
@@ -113,7 +119,7 @@ export default function CartSummary() {
                 <td className="font-primary text-base font-light px-4 sm:px-6 py-4 hidden sm:table-cell">
                   <p className="text-lg">
                     {formatCurrencyString({
-                      value: item.price,
+                      value: item.price * 100,
                       currency: "usd",
                     })}
                   </p>

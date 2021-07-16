@@ -31,7 +31,7 @@ export default {
       name: "price",
       title: "Price",
       description:
-        "For now, add cents as zeroes, ie 500 = $5 | 5000 = $50 | 10000 = $100",
+        "For now, price is in dollars, ie 50 = $50 | 500 = $500 | 1000 = $1000",
       type: "number",
       options: {
         isHighlighted: true, // <-- make this field easily accessible

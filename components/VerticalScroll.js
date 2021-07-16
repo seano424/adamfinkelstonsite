@@ -135,7 +135,7 @@ export default function VerticalScroll({ images, title }) {
                 <>
                   <p>
                     {formatCurrencyString({
-                      value: imageToShow.price,
+                      value: imageToShow.price * 100,
                       currency: "usd",
                     })}
                   </p>

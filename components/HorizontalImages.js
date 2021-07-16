@@ -149,7 +149,7 @@ export default function HorizontalImages({
               <>
                 <p>
                   {formatCurrencyString({
-                    value: imageToShow.price,
+                    value: imageToShow.price * 100,
                     currency: "usd",
                   })}
                 </p>

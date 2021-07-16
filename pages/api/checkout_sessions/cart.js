@@ -20,7 +20,7 @@ export default async function handler(req, res) {
               name: c.title ? c.title : "Adam Finkelston Artwork",
               images: [imageBuilder(c.asset).url()],
             },
-            unit_amount: c.price,
+            unit_amount: c.price * 100,
           },
           quantity: c.quantity,
         };
