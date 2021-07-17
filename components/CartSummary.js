@@ -110,7 +110,7 @@ export default function CartSummary() {
                     onChange={(e) =>
                       updateItem(item.quantity, e.target.value, item.id)
                     }
-                    className="text-gray-900 pl-1 py-1 form-input border border-gray-300 w-16 rounded-sm focus:border-palette-light focus:ring-palette-light"
+                    className="text-gray-900 pl-1 py-1 form-input border bg-white dark:bg-white border-gray-300 w-16 rounded-sm focus:border-palette-light focus:ring-palette-light"
                   />
                 </td>
                 <td className="font-primary text-base font-light px-4 sm:px-6 py-4 hidden sm:table-cell">
