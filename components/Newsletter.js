@@ -52,13 +52,13 @@ const SignupForm = ({ status, message, onValidated }) => {
               <article>
                 <div className="flex flex-col md:flex-row my-1 gap-1">
                   <MyTextInput
-                    className={`rounded focus:outline-none focus:ring focus:border-blue-300 p-3`}
+                    className={`rounded focus:outline-none focus:border-opacity-0 bg-white focus:ring p-3`}
                     name="firstName"
                     type="text"
                     placeholder="First name"
                   />
                   <MyTextInput
-                    className={`rounded focus:outline-none focus:ring focus:border-blue-300 p-3`}
+                    className={`rounded focus:outline-none focus:border-opacity-0 bg-white focus:ring p-3`}
                     name="lastName"
                     type="text"
                     placeholder="Last name"
@@ -66,7 +66,7 @@ const SignupForm = ({ status, message, onValidated }) => {
                 </div>
                 <div className="flex flex-col md:flex-row">
                   <MyTextInput
-                    className={`rounded-l w-full focus:outline-none focus:ring focus:border-blue-300 p-3`}
+                    className={`rounded-l bg-white w-full focus:outline-none focus:border-opacity-0 p-3`}
                     name="email"
                     type="email"
                     placeholder="ludwigvonsiegen@gmail.com"

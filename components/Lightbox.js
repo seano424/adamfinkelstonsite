@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { imageBuilder } from "@/lib/sanity";
 import ToggleTheme from "./ToggleTheme";
 import { useShoppingCart, formatCurrencyString } from "use-shopping-cart";
+import { useTheme } from "next-themes";
 
 export default function Lightbox({
   imageToShow,
@@ -14,6 +15,7 @@ export default function Lightbox({
 }) {
   const [isAdded, setIsAdded] = useState(false);
   const { addItem, removeItem } = useShoppingCart();
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     window.addEventListener("keydown", handleUserKeyPress);
