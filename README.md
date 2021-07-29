@@ -2,7 +2,11 @@
 
 This is the official website for Adam Finkelston, artist, publisher, and educator based in Prairie Village, KS. He has shown his art work in solo exhibitions in Kansas City, MO as well as group and juried exhibitions throughout the United States and internationally. Mr. Finkelston is also the owner, publisher and co-editor of the quarterly photography and printmaking magazine, [The Hand Magazine: A Magazine For Reproduction-based Art](https://thehandmagazine.com/).
 
-This site uses[Next.js](https://nextjs.org), [Sanity](https://sanity.io), [TailwindCSS](https://tailwindcss.com), [Mailchimp](https://mailchimp.com), and [Stripe](https://stripe.com).
+Check the live version [here](adamfinkelston.vercel.app/) ⚡️
+
+![home](./public/images/home-page.png)
+
+This site uses [Next.js](https://nextjs.org), [Sanity](https://sanity.io), [TailwindCSS](https://tailwindcss.com), [Mailchimp](https://mailchimp.com), and [Stripe](https://stripe.com).
 
 
 **Features:**
