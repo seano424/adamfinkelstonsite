@@ -20,16 +20,22 @@ export default function CartSummary() {
     formattedTotalPrice,
     cartCount,
     cartDetails,
-    redirectToCheckout,
+    clearCart,
     incrementItem,
     decrementItem,
     removeItem,
     totalPrice,
   } = useShoppingCart();
 
-  const shoppingCart = useShoppingCart();
-
-  console.log(shoppingCart);
+  //sets our cartEmpty state with cart data
+  useEffect(() => setCartEmpty(!cartCount), [cartCount]);
+  const delay = 3;
+  useEffect(() => {
+    let timer1 = setTimeout(() => setSucceeded(false), delay * 1000);
+    return () => {
+      clearTimeout(timer1);
+    };
+  }, [succeeded]);
 
   const entries = [];
   for (const key in cartDetails) {
@@ -65,12 +71,11 @@ export default function CartSummary() {
         const { payer } = details;
         setBillingDetails(payer);
         setSucceeded(true);
+        clearCart();
+        setCartEmpty(true);
       })
       .catch((err) => setPaypalErrorMessage("Something went wrong."));
   };
-
-  //sets our cartEmpty state with cart data
-  useEffect(() => setCartEmpty(!cartCount), [cartCount]);
 
   const updateItem = (quantity, value, id) => {
     value > quantity && incrementItem(id);
@@ -79,6 +84,16 @@ export default function CartSummary() {
 
   return (
     <>
+      {succeeded && (
+        <div className="h-96 w-full py-10 absolute flex flex-col items-center text-3xl backdrop-filter backdrop-grayscale backdrop-blur z-50 gap-8">
+          {/* <h1>Thanks Sean</h1> */}
+          <h1>
+            Thanks {billingDetails.name.given_name}{" "}
+            {billingDetails.name.surname}
+          </h1>
+          <p>We have received your order and it's on it's way!</p>
+        </div>
+      )}
       <div className="min-h-80 max-w-4xl my-4 sm:my-8 mx-auto w-full">
         <table className="mx-auto">
           <thead>
@@ -183,11 +198,11 @@ export default function CartSummary() {
           justify-center items-center focus:ring-1 focus:ring-palette-light focus:outline-none w-full hover:bg-palette-dark rounded-sm"
             type="submit"
             disabled={cartEmpty || loading}
-          >
+            >
             Checkout <div className="card-number"></div>
             <FaArrowRight className="w-4 ml-2 inline-flex" />
-          </button>
-        </form> */}
+            </button>
+          </form> */}
 
         <PayPalButtons
           style={{
@@ -197,6 +212,7 @@ export default function CartSummary() {
             tagline: false,
             layout: "horizontal",
           }}
+          disabled={cartEmpty || loading}
           createOrder={createOrder}
           onApprove={onApprove}
         />
