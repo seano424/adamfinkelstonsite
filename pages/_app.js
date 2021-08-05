@@ -6,16 +6,22 @@ import { CartProvider } from "use-shopping-cart";
 import getStripe from "../lib/stripe/getStripe";
 import Meta from "@/components/Meta";
 import { ThemeProvider } from "next-themes";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+import { PAYPAL_CLIENT_ID } from "../utils/constants";
 
 function MyApp({ Component, pageProps }) {
   return (
     <CartProvider mode="checkout-session" stripe={getStripe()} currency={"usd"}>
       <ThemeProvider attribute="class">
-        <Layout>
-          <Meta />
-          <SEO title={process.env.siteTitle} />
-          <Component {...pageProps} />
-        </Layout>
+        <PayPalScriptProvider
+          options={{ "client-id": PAYPAL_CLIENT_ID.clientId }}
+        >
+          <Layout>
+            <Meta />
+            <SEO title={process.env.siteTitle} />
+            <Component {...pageProps} />
+          </Layout>
+        </PayPalScriptProvider>
       </ThemeProvider>
     </CartProvider>
   );

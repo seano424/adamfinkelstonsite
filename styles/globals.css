@@ -24,6 +24,20 @@ a {
   box-sizing: border-box;
 }
 
+/* Paypal buttons */
+.paypal-button-container {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.paypal-button-row {
+  width: 100% !important;
+}
+
+.paypal-button-number-1 {
+  display: none !important;
+}
+
 .container {
   -ms-overflow-style: none; /* Internet Explorer 10+ */
   scrollbar-width: none; /* Firefox */

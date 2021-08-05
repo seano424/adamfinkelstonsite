@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { PayPalButtons } from "@paypal/react-paypal-js";
 import { useShoppingCart, formatCurrencyString } from "use-shopping-cart";
 import { fetchPostJSON } from "../utils/apiHelpers";
 import { imageBuilder } from "@/lib/sanity";
@@ -7,13 +8,17 @@ import Link from "next/link";
 
 export default function CartSummary() {
   //setting up some React states for our cart
+  const [succeeded, setSucceeded] = useState(false);
+  const [paypalErrorMessage, setPaypalErrorMessage] = useState("");
+  const [orderID, setOrderID] = useState(false);
+  const [billingDetails, setBillingDetails] = useState("");
+
   const [loading, setLoading] = useState(false);
   const [cartEmpty, setCartEmpty] = useState(true);
   // destructuring all the building blocks we get from use-shopping-cart
   const {
     formattedTotalPrice,
     cartCount,
-    clearCart,
     cartDetails,
     redirectToCheckout,
     incrementItem,
@@ -23,31 +28,49 @@ export default function CartSummary() {
   } = useShoppingCart();
 
   const shoppingCart = useShoppingCart();
+
+  console.log(shoppingCart);
+
   const entries = [];
   for (const key in cartDetails) {
     const entry = cartDetails[key];
     entries.push(entry);
   }
 
+  const createOrder = (data, actions) => {
+    return actions.order
+      .create({
+        purchase_units: [
+          {
+            amount: {
+              value: totalPrice,
+            },
+          },
+        ],
+        // remove the applicaiton_context object if you need your users to add a shipping address
+        // application_context: {
+        //   shipping_preference: "NO_SHIPPING",
+        // },
+      })
+      .then((orderID) => {
+        setOrderID(orderID);
+        return orderID;
+      });
+  };
+
+  const onApprove = (data, actions) => {
+    return actions.order
+      .capture()
+      .then(function (details) {
+        const { payer } = details;
+        setBillingDetails(payer);
+        setSucceeded(true);
+      })
+      .catch((err) => setPaypalErrorMessage("Something went wrong."));
+  };
+
   //sets our cartEmpty state with cart data
   useEffect(() => setCartEmpty(!cartCount), [cartCount]);
-
-  const handleCheckout = async (event) => {
-    event.preventDefault();
-    setLoading(true);
-    //send the cart data to our serverless API
-    const response = await fetchPostJSON(
-      "/api/checkout_sessions/cart",
-      cartDetails
-    );
-
-    if (response.statusCode === 500) {
-      console.error(response.message);
-      return;
-    }
-    //if nothing went wrong, sends user to Stripe checkout
-    redirectToCheckout({ sessionId: response.id });
-  };
 
   const updateItem = (quantity, value, id) => {
     value > quantity && incrementItem(id);
@@ -154,7 +177,7 @@ export default function CartSummary() {
       </div>
 
       <section className="max-w-sm mx-auto space-y-4 px-2">
-        <form onSubmit={handleCheckout} className="border">
+        {/* <form onSubmit={handleCheckout} className="border">
           <button
             className="bg-palette-primary text-white text-lg font-primary font-semibold pt-2 pb-1 leading-relaxed flex 
           justify-center items-center focus:ring-1 focus:ring-palette-light focus:outline-none w-full hover:bg-palette-dark rounded-sm"
@@ -164,7 +187,19 @@ export default function CartSummary() {
             Checkout <div className="card-number"></div>
             <FaArrowRight className="w-4 ml-2 inline-flex" />
           </button>
-        </form>
+        </form> */}
+
+        <PayPalButtons
+          style={{
+            // color: "blue",
+            // shape: "pill",
+            label: "pay",
+            tagline: false,
+            layout: "horizontal",
+          }}
+          createOrder={createOrder}
+          onApprove={onApprove}
+        />
 
         <Link href="/" passHref>
           <a
