@@ -6,7 +6,7 @@ export default function HorizontalImages({ images, showImage }) {
     <section
       // Uncomment this if you want down scroll to also scroll right...
       onWheel={(e) => (e.currentTarget.scrollLeft += e.deltaY + e.deltaX)}
-      className="container pt-10 flex-1 hidden lg:flex overflow-y-hidden dark:bg-white gap-x-10"
+      className="flex-1 hidden lg:flex overflow-y-hidden dark:bg-white gap-x-10"
     >
       {images.map((image, idx) => (
         <div key={idx} className="min-w-max group">

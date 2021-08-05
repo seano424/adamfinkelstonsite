@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { imageBuilder } from "@/lib/sanity";
 import ToggleTheme from "./ToggleTheme";
 import { useShoppingCart, formatCurrencyString } from "use-shopping-cart";
@@ -14,6 +15,7 @@ export default function Lightbox({
   setImageToShow,
 }) {
   const [isAdded, setIsAdded] = useState(false);
+  const [isRemoved, setIsRemoved] = useState(false);
   const { addItem, removeItem } = useShoppingCart();
   const { theme, setTheme } = useTheme();
 
@@ -28,6 +30,7 @@ export default function Lightbox({
   useEffect(() => {
     const timeoutID = window.setTimeout(() => {
       setIsAdded(false);
+      setIsRemoved(false);
     }, 3000);
 
     return () => window.clearTimeout(timeoutID);
@@ -83,6 +86,12 @@ export default function Lightbox({
     };
     setIsAdded(true);
     addItem(item);
+  };
+
+  const removeFromCart = (e, id) => {
+    e.stopPropagation();
+    setIsRemoved(true);
+    removeItem(id);
   };
 
   return (
@@ -211,11 +220,17 @@ export default function Lightbox({
                     >
                       {isAdded ? "Item added" : "Add to cart"}
                     </button>
+                    <Link href="/cart">
+                      <a className="w-80 text-center bg-blue-500 font-black tracking-wider rounded mb-2 p-2">
+                        Go to cart
+                      </a>
+                    </Link>
                     <button
                       className="w-80 bg-pink-500 font-black tracking-wider rounded p-2"
-                      onClick={() => removeItem(imageToShow._key)}
+                      // onClick={() => removeItem(imageToShow._key)}
+                      onClick={(e) => removeFromCart(e, imageToShow._key)}
                     >
-                      Remove from cart
+                      {isRemoved ? "Item removed" : "Remove from cart"}
                     </button>
                   </>
                 )}

@@ -15,6 +15,7 @@
     "url": "git+https://github.com/sanity-io/sanity-template-nextjs-ecommerce.git"
   },
   "dependencies": {
+    "@paypal/react-paypal-js": "^7.2.1",
     "@sanity/client": "^2.0.1",
     "@sanity/image-url": "^0.140.19",
     "@stripe/stripe-js": "^1.16.0",
