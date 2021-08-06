@@ -1,7 +1,5 @@
-import { useEffect, useState } from "react";
-import { imageBuilder } from "@/lib/sanity";
+import { useState } from "react";
 import Lightbox from "./Lightbox";
-import BackButton from "./BackButton";
 import HorizontalImages from "@/components/HorizontalImages";
 import VerticalImages from "@/components/VerticalImages";
 

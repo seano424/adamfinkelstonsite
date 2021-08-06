@@ -3,7 +3,7 @@ import Link from "next/link";
 import { imageBuilder } from "@/lib/sanity";
 import ToggleTheme from "./ToggleTheme";
 import { useShoppingCart, formatCurrencyString } from "use-shopping-cart";
-import { useTheme } from "next-themes";
+import Image from "next/image";
 
 export default function Lightbox({
   imageToShow,
@@ -17,7 +17,6 @@ export default function Lightbox({
   const [isAdded, setIsAdded] = useState(false);
   const [isRemoved, setIsRemoved] = useState(false);
   const { addItem, removeItem } = useShoppingCart();
-  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     window.addEventListener("keydown", handleUserKeyPress);
@@ -110,7 +109,7 @@ export default function Lightbox({
               ←
             </button>
             <div className="flex flex-col gap-7">
-              <img
+              <Image
                 key={imageToShow._key}
                 src={imageBuilder(mainImage).url()}
                 alt="Adam Finkelston"
@@ -122,7 +121,7 @@ export default function Lightbox({
                 <div className="flex gap-6">
                   {imageToShow.thumbnails.map((thumbs) => (
                     <div className="flex gap-6">
-                      <img
+                      <Image
                         onClick={(e) => handleChangeImage(e, thumbs.asset)}
                         key={imageToShow._key}
                         src={imageBuilder(thumbs.asset).url()}
@@ -152,7 +151,7 @@ export default function Lightbox({
             ←
           </button>
           <div className="flex-col gap-7 hidden lg:flex">
-            <img
+            <Image
               key={imageToShow._key}
               src={imageBuilder(mainImage).url()}
               alt="Adam Finkelston"
@@ -164,7 +163,7 @@ export default function Lightbox({
               <div className="flex gap-6">
                 {imageToShow.thumbnails.map((thumbs) => (
                   <div className="flex gap-6">
-                    <img
+                    <Image
                       onClick={(e) => handleChangeImage(e, thumbs.asset)}
                       key={imageToShow._key}
                       src={imageBuilder(thumbs.asset).url()}

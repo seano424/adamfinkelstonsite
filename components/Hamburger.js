@@ -4,9 +4,7 @@ export default function Hamburger({ toggle, open }) {
   return (
     <article
       onClick={toggle}
-      className={`xl:hidden z-50 cursor-pointer flex flex-col justify-center ${
-        open ? "p-3" : "p-3"
-      }`}
+      className={`xl:hidden z-50 cursor-pointer flex flex-col justify-center p-3`}
     >
       <div
         className={`w-8 h-1 bg-gray-900 rounded-full transition-all duration-150 ease-linear relative ${

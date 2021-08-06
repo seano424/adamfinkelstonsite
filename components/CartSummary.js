@@ -1,16 +1,15 @@
 import { useState, useEffect } from "react";
 import { PayPalButtons } from "@paypal/react-paypal-js";
 import { useShoppingCart, formatCurrencyString } from "use-shopping-cart";
-import { fetchPostJSON } from "../utils/apiHelpers";
 import { imageBuilder } from "@/lib/sanity";
 import { FaTimes, FaArrowRight, FaArrowLeft } from "react-icons/fa";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function CartSummary() {
   //setting up some React states for our cart
   const [succeeded, setSucceeded] = useState(false);
   const [paypalErrorMessage, setPaypalErrorMessage] = useState("");
-  const [orderID, setOrderID] = useState(false);
   const [billingDetails, setBillingDetails] = useState("");
 
   const [loading, setLoading] = useState(false);
@@ -31,7 +30,10 @@ export default function CartSummary() {
   useEffect(() => setCartEmpty(!cartCount), [cartCount]);
   const delay = 3;
   useEffect(() => {
-    let timer1 = setTimeout(() => setSucceeded(false), delay * 1000);
+    let timer1 = setTimeout(() => {
+      setSucceeded(false);
+      setPaypalErrorMessage("");
+    }, delay * 1000);
     return () => {
       clearTimeout(timer1);
     };
@@ -59,7 +61,6 @@ export default function CartSummary() {
         // },
       })
       .then((orderID) => {
-        setOrderID(orderID);
         return orderID;
       });
   };
@@ -94,6 +95,19 @@ export default function CartSummary() {
           <p>We have received your order and it's on it's way!</p>
         </div>
       )}
+      {paypalErrorMessage !== "" && (
+        <div className="h-96 w-full py-10 absolute flex flex-col items-center text-3xl backdrop-filter backdrop-grayscale backdrop-blur z-50 gap-8">
+          {/* <h1>Thanks Sean</h1> */}
+          <h1>
+            Thanks {billingDetails.name.given_name}{" "}
+            {billingDetails.name.surname}
+          </h1>
+          <p>
+            But there seems to have been an error with your order.{" "}
+            {paypalErrorMessage}
+          </p>
+        </div>
+      )}
       <div className="min-h-80 max-w-4xl my-4 sm:my-8 mx-auto w-full">
         <table className="mx-auto">
           <thead>
@@ -116,16 +130,15 @@ export default function CartSummary() {
                 className="text-sm sm:text-base text-gray-600 text-center"
               >
                 <td className="font-primary font-medium px-4 sm:px-6 py-4 flex items-center">
-                  <img
+                  <Image
                     src={imageBuilder(item.asset).url()}
                     alt={
                       item.title
                         ? item.title
                         : "Artwork for sale by Adam Finkelston"
                     }
-                    height={200}
-                    width={200}
-                    layout="responsive"
+                    height={500}
+                    width={500}
                     className={`inline-flex w-20 sm:w-full`}
                   />
                 </td>
@@ -192,18 +205,6 @@ export default function CartSummary() {
       </div>
 
       <section className="max-w-sm mx-auto space-y-4 px-2">
-        {/* <form onSubmit={handleCheckout} className="border">
-          <button
-            className="bg-palette-primary text-white text-lg font-primary font-semibold pt-2 pb-1 leading-relaxed flex 
-          justify-center items-center focus:ring-1 focus:ring-palette-light focus:outline-none w-full hover:bg-palette-dark rounded-sm"
-            type="submit"
-            disabled={cartEmpty || loading}
-            >
-            Checkout <div className="card-number"></div>
-            <FaArrowRight className="w-4 ml-2 inline-flex" />
-            </button>
-          </form> */}
-
         <PayPalButtons
           style={{
             // color: "blue",

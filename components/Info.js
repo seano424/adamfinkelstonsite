@@ -1,6 +1,7 @@
 import React from "react";
 import Markup from "./Markup";
 import { imageBuilder } from "lib/sanity";
+import Image from "next/image";
 
 export default function Info({ avatar, title, blockContent }) {
   return (
@@ -13,10 +14,12 @@ export default function Info({ avatar, title, blockContent }) {
       </h1>
       <div className="flex flex-col items-center">
         {avatar && (
-          <img
+          <Image
             className="w-40 h-40"
             src={imageBuilder(avatar).url()}
             alt={"Adam Finkelston"}
+            height={200}
+            width={200}
           />
         )}
         <Markup blockContent={blockContent} />

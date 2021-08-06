@@ -6,7 +6,7 @@ export default function About({ info }) {
   const blockContent = info[0].body;
   const avatar = info[0].main_image.asset;
   return (
-    <main className="mt-20">
+    <main className="xl:mt-20">
       <Info
         title={"About the Artist"}
         avatar={avatar}

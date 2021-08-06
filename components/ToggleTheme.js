@@ -5,7 +5,7 @@ export default function ToggleTheme() {
   const { theme, setTheme } = useTheme();
 
   useEffect(() => {
-    setTheme("light");
+    setTheme("dark");
   }, []);
 
   const toggle = () => {

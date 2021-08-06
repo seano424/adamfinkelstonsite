@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { imageBuilder } from "../lib/sanity";
+import Image from "next/image";
 
 export default function HorizontalImages({ images, showImage }) {
   return (
@@ -15,9 +15,10 @@ export default function HorizontalImages({ images, showImage }) {
             className={`h-400 w-400 transition-all relative delay-700 duration-1000 ease-in-out cursor-pointer`}
           >
             {image !== undefined && (
-              <img
+              <Image
                 src={imageBuilder(image.asset).url()}
                 alt="Adam Finkelston"
+                layout="fill"
               />
             )}
           </div>

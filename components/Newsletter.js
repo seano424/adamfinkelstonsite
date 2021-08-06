@@ -41,38 +41,38 @@ const SignupForm = ({ status, message, onValidated }) => {
         }}
       >
         {(formik) => (
-          <section className="bg-black p-10 pb-16 rounded-3xl m-auto">
+          <section className="bg-black bg-opacity-80 p-10 pb-16 xl:rounded-3xl m-auto">
             <article>
-              <h1 className="text-4xl text-center lg:px-8 py-6 rounded text-white font-black bg-black">
+              <h1 className="text-4xl text-center lg:px-8 py-6 xl:rounded text-white font-black">
                 Sign up for Adam's Newsletter
               </h1>
             </article>
 
             <Form>
               <article>
-                <div className="flex flex-col md:flex-row my-1 gap-1">
+                <div className="flex flex-col md:flex-row"></div>
+                <div className="flex flex-col lg:flex-col lg:gap-1">
                   <MyTextInput
-                    className={`rounded focus:outline-none focus:border-opacity-0 bg-white focus:ring p-3`}
+                    autoFocus={true}
+                    className={`xl:rounded focus:outline-none focus:border-opacity-0 cursor-text text-black bg-white p-3 placeholder-black`}
                     name="firstName"
                     type="text"
-                    placeholder="First name"
+                    placeholder="What's your first name?"
                   />
                   <MyTextInput
-                    className={`rounded focus:outline-none focus:border-opacity-0 bg-white focus:ring p-3`}
+                    className={`xl:rounded focus:outline-none focus:border-opacity-0 cursor-text text-black bg-white p-3`}
                     name="lastName"
                     type="text"
-                    placeholder="Last name"
+                    placeholder="Last name?"
                   />
-                </div>
-                <div className="flex flex-col md:flex-row">
                   <MyTextInput
-                    className={`rounded-l bg-white w-full focus:outline-none focus:border-opacity-0 p-3`}
+                    className={`xl:rounded focus:outline-none focus:border-opacity-0 cursor-text text-black bg-white p-3`}
                     name="email"
                     type="email"
-                    placeholder="ludwigvonsiegen@gmail.com"
+                    placeholder="And your email?"
                   />
                   <button
-                    className={`bg-green-300 w-full md:w-auto rounded-r p-3 font-black text-black self-start cursor-pointer`}
+                    className={`bg-blue-400 tracking-wide font-mono w-full text-2xl rounded p-3 font-bold text-white cursor-pointer`}
                     disabled={formik.isSubmitting}
                     type="submit"
                   >
