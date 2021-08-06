@@ -14,7 +14,7 @@ export default function Navbar({ prints, photographs }) {
   return (
     <section
       className={`flex fixed ${
-        open ? "h-20" : " h-20 md:static bg-white md:bg-opacity-95"
+        open ? "h-20" : " h-20 lg:h-full md:static bg-white md:bg-opacity-95"
       } xl:flex-col items-center xl:mb-0 justify-between z-50  w-screen gap-4`}
     >
       <NavLinks />
