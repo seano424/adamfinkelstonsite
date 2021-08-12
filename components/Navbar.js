@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useRouter } from "next/router";
 import Hamburger from "./Hamburger";
 import NavLinks from "./NavLinks";
 import MobileNavbar from "./MobileNavbar";
